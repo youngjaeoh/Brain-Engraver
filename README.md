@@ -16,10 +16,12 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 - Feature: Helps the user to memorize vocabularies with various learning methods such as "listen-and-write" and "word  card". It also shows vocabularies on human forgetting curb.
 - Difference: This application  does  not  support  the test  stage  like  Brain-Engraver.  We  compute  the "likely-to-be-forgotten-words"   based   on   test   results  with  the  human  forgetting  curve  algorithm.
 - Review:  There  are  only  six  reviews,  and  most  of them  said  it  is  a  waste  of  money  because  of  its slow  loading.
+
 ### Memorize.ai:  Learn  Lazily
 - Feature:  It  uses  artificial  intelligence (they  do  not give  specific  detail  about  what  algorithm  or  what technique  they  used  for  this  application).  It  supports  a  feature  called  "Spaced  Repetition".  This application  supports  LaTeX,  and  code  editors.
 - Difference:  It  is  not  specified  in  memorizing  vocabularies  like  our  Brain-Engraver.
 - Review:  5  out  of  6  reviews  said  it  was  good,  but  1 of  the  review  claimed  that  it  crashes  consistently.
+
 ### Research   Paper: A   Memorizing   Model   of   Effective English  Study  by  Kyung  Lan  Kim
 - It  goes  on  to  detail  about  the  fact  that  memorizing  a  vocabulary  based  on  Ebbinghaus  human forgetting  curve  theory  is  better  than  just  hard-memorizing  the  words.
 - Difference:  The  paper  only  describes  the  effectiveness  of  memorization  based  on  the  human forgetting curve. It does not provide any software-related  method.
