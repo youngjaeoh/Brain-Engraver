@@ -17,15 +17,18 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 - Feature: Helps the user to memorize vocabularies with various learning methods such as "listen-and-write" and "word  card". It also shows vocabularies on human forgetting curb.
 - Difference: This application  does  not  support  the test  stage  like  Brain-Engraver.  We  compute  the "likely-to-be-forgotten-words"   based   on   test   results  with  the  human  forgetting  curve  algorithm.
 - Review:  There  are  only  six  reviews,  and  most  of them  said  it  is  a  waste  of  money  because  of  its slow  loading.
+- URL: https://apps.apple.com/kr/app/%EB%A9%94%EB%AA%A8%EB%A6%AC%EB%B7%B0-%EC%98%81%EC%96%B4-%EB%8B%A8%EC%96%B4-%EC%88%99%EC%96%B4-%EC%96%B4%ED%9C%98-%EC%82%AC%EC%A0%84-%EC%95%94%EA%B8%B0-%EB%A7%9D%EA%B0%81%EA%B3%A1%EC%84%A0/id1407142605
 
 ### Memorize.ai:  Learn  Lazily
 - Feature:  It  uses  artificial  intelligence (they  do  not give  specific  detail  about  what  algorithm  or  what technique  they  used  for  this  application).  It  supports  a  feature  called  "Spaced  Repetition".  This application  supports  LaTeX,  and  code  editors.
 - Difference:  It  is  not  specified  in  memorizing  vocabularies  like  our  Brain-Engraver.
 - Review:  5  out  of  6  reviews  said  it  was  good,  but  1 of  the  review  claimed  that  it  crashes  consistently.
+- URL: https://memorize.ai/
 
 ### Research   Paper: A   Memorizing   Model   of   Effective English  Study  by  Kyung  Lan  Kim
 - It  goes  on  to  detail  about  the  fact  that  memorizing  a  vocabulary  based  on  Ebbinghaus  human forgetting  curve  theory  is  better  than  just  hard-memorizing  the  words.
 - Difference:  The  paper  only  describes  the  effectiveness  of  memorization  based  on  the  human forgetting curve. It does not provide any software-related  method.
+- URL: http://www.riss.kr/search/detail/DetailView.do?p_mat_type=be54d9b8bc7cdb09&control_no=6af046b2297666f0ffe0bdc3ef48d419
 
 ## You can also see...
 Our documentation of this project: https://www.overleaf.com/read/dpxgnnkhzkct
