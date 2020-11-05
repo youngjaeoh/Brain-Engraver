@@ -25,7 +25,7 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 
 ### Research   Paper: A   Memorizing   Model   of   Effective English  Study  by  Kyung  Lan  Kim
 - It  goes  on  to  detail  about  the  fact  that  memorizing  a  vocabulary  based  on  Ebbinghaus  human forgetting  curve  theory  is  better  than  just  hard-memorizing  the  words.
-- Difference:  The  paper  only  describes  the  effectiveness  of  memorization  based  on  the  human forgetting curve. It does not provide any software-related  method.\
+- Difference:  The  paper  only  describes  the  effectiveness  of  memorization  based  on  the  human forgetting curve. It does not provide any software-related  method.
 
 ## You can also see...
 Our documentation of this project: https://www.overleaf.com/read/dpxgnnkhzkct
