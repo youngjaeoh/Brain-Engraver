@@ -1,21 +1,31 @@
-import time
+from flask import request, json
+import db
 
-sleepTime = 1
+commonResponse = {
+    'version': '2.0',
+    'resultCode': 'OK',
+    'output': {}
+}
 
-# def readWord(word, meaning):
-    # time.sleep(sleepTime)
-    # send nugu request with word
-    # return 'listen word: ' + word + '\nlisten meaning: ' + meaning
-    # return meaning
+def question(index):
+    response = commonResponse
+    print(db.getExam())
+    response['output']['question'] = db.getExam()[index-1][1]
 
-def testWord(word, meaning):
-    # nugu speaks word
-    print(word)
-    # waits for response...
-    response = 'answer'
-    if response == meaning:
-        print('correct!')
-        # save your answer
+    return json.dumps(response)
+
+def answer(index):
+    data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
+    myAnswer = data['action']['parameters']['answer']['value']
+
+    answer = db.getExam()[index-1][2]
+
+    if answer == myAnswer:
+        correctness = '정답입니다.'
     else:
-        print('wrong!')
-        # save your answer
+        correctness = '오답입니다.'
+
+    response = commonResponse
+    response['output']['correctness'] = correctness
+
+    return json.dumps(response)

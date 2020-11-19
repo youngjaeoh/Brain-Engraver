@@ -1,7 +1,7 @@
 import pymysql
 from pprint import pprint
 
-def getDB():
+def initDB():
     db = pymysql.connect(
         host='localhost',
         port=3306,
@@ -12,8 +12,28 @@ def getDB():
     )
     return db
 
+def getDB(query, parameter):
+    db = initDB()
+    cursor = db.cursor()
+    sql = query
+    cursor.execute(sql, parameter)
+    rows = cursor.fetchall()
+    db.commit()
+    db.close()
+    if len(rows) == 0:
+        return 0
+    else:
+        return rows
+
+def setDB(query, parameter):
+    db = initDB()
+    cursor = db.cursor()
+    cursor.execute(query, parameter)
+    db.commit()
+    db.close()
+
 def postTest():
-    db = getDB()
+    db = initDB()
     cursor = db.cursor()
 
     sql = "INSERT INTO User(id, userId, name, password) VALUES (6, 'kiMin', 'kiMin', '1234');"
@@ -25,7 +45,7 @@ def postTest():
     return '200'
 
 def getTest():
-    db = getDB()
+    db = initDB()
     cursor = db.cursor()
     sql = 'SELECT * FROM `User`'
     cursor.execute(sql, ())
@@ -38,44 +58,32 @@ def getTest():
         return str(rows)
 
 def getWord(id):
-    db = getDB()
-    cursor = db.cursor()
-    sql = 'SELECT word, meaning FROM Word WHERE wordSetId = 1 AND subWordSetId = 1 AND id = ' + str(id)
-    cursor.execute(sql, ())
-    rows = cursor.fetchall()
-    db.commit()
-    db.close()
-    if len(rows) == 0:
-        return 0
-    else:
-        return rows
+    sql = 'SELECT word, meaning FROM Word WHERE wordSetId = 1 AND subWordSetId = 2 AND id = %s'
+    return getDB(sql, (id))
 
 def getAnswer(question_id):
-    db = getDB()
-    cursor = db.cursor()
-    sql = 'SELECT meaning FROM Word WHERE id = ' + str(question_id)
-    cursor.execute(sql, ())
-    rows = cursor.fetchall()
-    db.commit()
-    db.close()
-    if len(rows) == 0:
-        return 0
-    else:
-        return rows[0][0]
+    sql = 'SELECT meaning FROM Word WHERE id = %s'
+    return getDB(sql, (question_id))
 
 def getWordSet(data):
-    db = getDB()
-    cursor = db.cursor()
-    # SELECT * FROM brainEngraver.Word WHERE wordSetId = 1 AND subWordSetId = 1;
-    sql = 'SELECT name, meaning FROM Word WHERE wordSetId = ' + str(data['wordSet']) + ' AND subWordSetId = ' + str(data['subWordSet'])
-    cursor.execute(sql, ())
-    rows = cursor.fetchall()
-    db.commit()
-    db.close()
-    if len(rows) == 0:
-        return 0
-    else:
-        return rows
+    sql = 'SELECT name, meaning FROM Word WHERE wordSetId = %s AND subWordSetId = %s'
+    return getDB(sql, (data['wordSet'], data['subWordSet']))
+
+def getExamWords(wordSetId, subWordSetId):
+    sql = 'SELECT word, meaning FROM Word WHERE  wordSetId = %s AND subWordSetId = %s'
+    return getDB(sql, (wordSetId, subWordSetId))
+
+def setExamWords(word, meaning):
+    sql = 'INSERT INTO Exam (word, meaning) VALUES (%s, %s)'
+    setDB(sql, (word, meaning))
+
+def deleteExam():
+    sql = 'DELETE FROM Exam'
+    setDB(sql, ())
+
+def getExam():
+    sql = 'SELECT * from Exam'
+    return getDB(sql, ())
 
 if __name__ == '__main__':
     # p(getCalendar('개강'))
