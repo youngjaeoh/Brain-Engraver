@@ -61,7 +61,7 @@ def studyStart():
     response['output']['subWordSet'] = subWordSet
 
     return json.dumps(response)
-
+ 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @app.route('/chooseChapter', methods=['POST'])
 def chooseChapter():
