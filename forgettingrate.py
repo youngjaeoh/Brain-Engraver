@@ -78,8 +78,9 @@ def update_forgettingRate(answer):
     # print(new_forgettingRate)
     # print("################################")
 
+    # 에러 방지..ㅠㅠ
     if new_forgettingRate > 200000:
-        new_foregettingRate = 200000
+        new_foregettingRate = 100000 ## 음..
 
     db.setDB(sql2, (new_forgettingRate, answer))
 

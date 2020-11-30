@@ -81,10 +81,16 @@ def getExamWords(wordSetId, subWordSetId):
         sql = 'SELECT word, meaning, id FROM Word WHERE wordSetId = %s AND subWordSetId = %s'
         examList = getDB(sql, (wordSetId, subWordSetId))
         # forgettingRate에서 5개 골라야 함.
-        sql = 'SELECT word, meaning, id FROM ForgettingRate ORDER BY forgettingRate ASC LIMIT 5'
-        newList = getDB(sql, ())
+        sql = 'SELECT word, meaning, id FROM ForgettingRate WHERE NOT (wordSetId = %s AND subWordSetId = %s) ORDER BY forgettingRate ASC LIMIT 5'
+        newList = getDB(sql, (wordSetId, subWordSetId))
         examList += newList
 
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print(examList)
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+        # sql = 'SELECT word, meaning, id FROM ForgettingRate ORDER BY forgettingRate ASC LIMIT 15'
+        # return getDB(sql, ())
         # 시험 볼 단어 return 해줌...
         return examList
 
@@ -133,9 +139,13 @@ def getLowForgettingRate():
 #     sql = 'SELECT word, meaning FROM Word WHERE wordSetId = %s AND subWordSetId = %s'
 #     return getDB(sql, (wordSetId, subWordSetId))
 
-def getForgettinRateWords(wordSetId, subWordSetId):
-    sql = 'SELECT word, meaning FROM ForgettingRate WHERE wordSetId = %s AND subWordSetId = %s'
-    return getDB(sql,(wordSetId, subWordSetId))
+def getForgettingRateWords():
+    sql = 'SELECT word, meaning FROM ForgettingRate'
+    return getDB(sql,())
+
+def getForgettingRateWords_All():
+    sql = 'SELECT word, meaning FROM ForgettingRate'
+    return getDB(sql,())
 
 def insert_ForgettingRate(word, meaning, wordId, wordSetId, subWordSetId):
     sql2 = "SELECT word FROM ForgettingRate WHERE wordId = %s"

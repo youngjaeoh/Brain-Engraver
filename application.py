@@ -53,6 +53,7 @@ def studyStart():
         db.insert_ForgettingRate(word[1], word[2], word[3], wordSetId, subWordSetId) # study 안 하고 시험 볼 수는 없는 구조
 
     # forgettingStage 0인 단어들 1로 업데이트
+    # 이거 이제 없어도 됨
     forgettingrate.init_forgettingStage(wordSetId, subWordSetId)
 
     response = commonResponse
@@ -126,14 +127,24 @@ def examStart():
     # exam table flush
     db.deleteExam()
 
-    studied_words = db.getForgettinRateWords(wordSetId, subWordSetId)
+    
+    studied_words = db.getForgettingRateWords()
 
+    ## 여기서 업데이트를 이것만 하면 안되지 전부 다 해야지
     for word in studied_words:#
         forgettingrate.update_forgettingRate(word[1]) # meaning 넘겨줌
 
     #words = db.getLowForgettingRate()    
+
+    """
+    # ForgettingRate db에 있는 단어 전부 다 forgettingrate 업데이트
+    forgetting_words = db.getForgettingRateWords_All()
+
+    for word in forgetting_words:
+        forgettingrate.update_forgettingRate(word[1])
     
     ## getExamWords 바로 전에 forgettingrate 업데이트
+    """
 
     # exam table에 공부할 단어 등록
     words = db.getExamWords(wordSetId, subWordSetId)
