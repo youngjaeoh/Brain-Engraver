@@ -61,7 +61,7 @@ def studyStart():
     response['output']['subWordSet'] = subWordSet
 
     return json.dumps(response)
- 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @app.route('/chooseChapter', methods=['POST'])
 def chooseChapter():
@@ -73,7 +73,52 @@ def chooseChapter():
 def chooseWordSet():
     response = commonResponse
     data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
-    myChosenWordset = data['action']['parameters']['wordset']['value']
+    SmyChosenWordset = data['action']['parameters']['wordset']['value']
+
+    if SmyChosenWordset == "토익":
+        myChosenWordset = "토익"
+    elif SmyChosenWordset == "툐익":
+        myChosenWordset = "토익"
+    elif SmyChosenWordset == "툐윅":
+        myChosenWordset = "토익"
+    elif SmyChosenWordset == "툐읙":
+        myChosenWordset = "토익"
+    elif SmyChosenWordset == "토플":
+        myChosenWordset = "토플"
+    elif SmyChosenWordset == "툐플":
+        myChosenWordset = "토플"
+    elif SmyChosenWordset == "툐퓰":
+        myChosenWordset = "토플"
+    elif SmyChosenWordset == "토풀":
+        myChosenWordset = "토플"
+    elif SmyChosenWordset == "토프을":
+        myChosenWordset = "토플"
+    elif SmyChosenWordset == "토오플":
+        myChosenWordset = "토플"
+    elif SmyChosenWordset == "툐오플":
+        myChosenWordset = "토플"
+    elif SmyChosenWordset == "툐프을":
+        myChosenWordset = "토플"
+    elif SmyChosenWordset == "지얼이":
+        myChosenWordset = "GRE"
+    elif SmyChosenWordset == "지알이":
+        myChosenWordset = "GRE"
+    elif SmyChosenWordset == "지월이":
+        myChosenWordset = "GRE"
+    elif SmyChosenWordset == "지왈이":
+        myChosenWordset = "GRE"
+    elif SmyChosenWordset == "쥐알이":
+        myChosenWordset = "GRE"
+    elif SmyChosenWordset == "지알이":
+        myChosenWordset = "GRE"
+    elif SmyChosenWordset == "쥐얼이":
+        myChosenWordset = "GRE"
+    elif SmyChosenWordset == "쥐월이":
+        myChosenWordset = "GRE"
+    elif SmyChosenWordset == "쥐왈이":
+        myChosenWordset = "GRE"
+    else:
+        myChosenWordset = "GRE"
 
     if myChosenWordset == "토익":
         response['output']['chooseWordSet'] = 'TOEIC'
@@ -95,12 +140,70 @@ def chooseSubWordSet():
     response = commonResponse
     data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
     myChosenWordset = data['action']['parameters']['subwordset']['value']
+    print("what did you say?: ", myChosenWordset)
 
-    if myChosenWordset == "챕터 일":
+    # if SmyChosenWordset == "챕터 일":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "일단원":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "일":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "챕터 1":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "챕터일":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "첍터 일":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "첍터일":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "췝터일":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "췝터 일":
+    #     myChosenWordset = "챕터 일"
+    # elif SmyChosenWordset == "챕터 이":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "이단원":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "이":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "챕터 2":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "챕터이":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "첍터 이":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "첍터이":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "췝터이":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "췝터 이":
+    #     myChosenWordset = "챕터 이"
+    # elif SmyChosenWordset == "삼단원":
+    #     myChosenWordset = "챕터 삼"
+    # elif SmyChosenWordset == "삼":
+    #     myChosenWordset = "챕터 삼"
+    # elif SmyChosenWordset == "챕터 삼":
+    #     myChosenWordset = "챕터 삼"
+    # elif SmyChosenWordset == "챕터 3":
+    #     myChosenWordset = "챕터 삼"
+    # elif SmyChosenWordset == "챕터삼":
+    #     myChosenWordset = "챕터 삼"
+    # elif SmyChosenWordset == "첍터 삼":
+    #     myChosenWordset = "챕터 삼"
+    # elif SmyChosenWordset == "첍터삼":
+    #     myChosenWordset = "챕터 삼"
+    # elif SmyChosenWordset == "췝터삼":
+    #     myChosenWordset = "챕터 삼"
+    # elif SmyChosenWordset == "췝터 삼":
+    #     myChosenWordset = "챕터 삼"
+    # else:
+    #     myChosenWordset = "챕터 삼"
+
+    if myChosenWordset == "일단원":
         response['output']['chooseSubWordSet'] = 'Chapter 1'
         index = 1
         nugu.setSubWordSet("Chapter 1", index)
-    elif myChosenWordset == "챕터 이":
+    elif myChosenWordset == "이단원":
         response['output']['chooseSubWordSet'] = 'Chapter 2'
         index = 2
         nugu.setSubWordSet("Chapter 2", index)
