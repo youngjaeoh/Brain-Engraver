@@ -15,8 +15,8 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 
 ### Memo  Review
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100877210-cad75280-34eb-11eb-894f-d9a0cb4f1a1d.PNG", width="200">
-<img src="https://user-images.githubusercontent.com/69071182/100877246-d62a7e00-34eb-11eb-9f87-363c783dc5cf.PNG", width="200">
+<img src="./images/memoreview1.png", width="200">
+<img src="./images/memoreview2.png", width="200">
 </p>
 <br>  
 
@@ -27,8 +27,8 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 
 ### Memorize.ai:  Learn  Lazily
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100877252-d7f44180-34eb-11eb-8ac8-4246628f6bb2.PNG", width="200">
-<img src="https://user-images.githubusercontent.com/69071182/100877290-e5113080-34eb-11eb-831c-070e2782b309.PNG", width="200">
+<img src="./images/memorizeai1", width="200">
+<img src="./images/memorizeai2", width="200">
 </p>
 <br>
 
@@ -44,8 +44,8 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 
 ## Datasets
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100879947-76ce6d00-34ef-11eb-9484-518406e983d0.png", width="350">
-<img src="https://user-images.githubusercontent.com/69071182/100879952-78983080-34ef-11eb-9234-81b2b533b8fd.png", width="400">
+<img src="./images/dataset1", width="350">
+<img src="./images/dataset2", width="400">
 </p>
 <br>  
 
@@ -63,7 +63,7 @@ HP  Spectre  x360  Convertible | Intel  Core  i7-8550U,  1.80GHz | 16GB  2208MHz
 
 ## Overall architecture
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100880666-59e66980-34f0-11eb-8e47-bf1fe0226e05.jpeg", width="400">
+<img src="./images/overallarchitecture", width="400">
 </p>
 <br>
 
@@ -72,15 +72,16 @@ Brain Engraver consists of four modules. The first module is NUGU AI Speaker and
 
 ## Methodology
 ### Forgetting-Curve Algorithm
+
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100883148-586a7080-34f3-11eb-8b69-f058b2267e4d.png", width="450">
+<img src="./images/forgetting_curve.png", width="450">
 </p>
 <p align="center">
   <em>Forgetting-Curve graph</em>
 </p>
 <br>
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100883140-56081680-34f3-11eb-8545-736b2e3394ce.png", width="950">
+<img src="./images/db.png", width="950">
 </p>
 <p align="center">
   <em>Database</em>
@@ -146,7 +147,7 @@ In the update_forgettingRate, it updates the forgettingrate from forgettingrate 
 
 - fx, cal_forgettingrate
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100885424-f9f2c180-34f5-11eb-9ee3-4f1ea754023d.png", width="200">
+<img src="./images/equation", width="200">
 </p>
 <p align="center">
   <em>Forgetting-rate equation in forgetting-stage 1</em>
@@ -215,18 +216,18 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 
 ### Mobile application
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100886930-bd27ca00-34f7-11eb-867f-7d72843b955b.jpeg", width="200">
+<img src="./images/application", width="200">
 </p>
 <p align="center">
   <em>NUGU play 뇌새김</em>
 </p>
 <br>
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100886406-23601d00-34f7-11eb-8cd5-7e844677778f.png", width="170">
-<img src="https://user-images.githubusercontent.com/69071182/100886419-26f3a400-34f7-11eb-821d-830e1f573374.png", width="170">
-<img src="https://user-images.githubusercontent.com/69071182/100886424-2955fe00-34f7-11eb-8aea-5ca6ff750a6a.png", width="170">
-<img src="https://user-images.githubusercontent.com/69071182/100886429-2b1fc180-34f7-11eb-8be9-d3d5012fdfb1.png", width="170">
-<img src="https://user-images.githubusercontent.com/69071182/100886431-2c50ee80-34f7-11eb-85db-43d9a40605f4.png", width="170">
+<img src="./images/mobile1", width="170">
+<img src="./images/mobile2", width="170">
+<img src="./images/mobile3", width="170">
+<img src="./images/mobile5", width="170">
+<img src="./images/mobile6", width="170">
 </p>
 <p align="center">
   <em>Mobile application</em>
@@ -243,7 +244,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 
 #### Choosing Wordset
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100887581-771f3600-34f8-11eb-9058-6b16f02fb4fb.png", width="800">
+<img src="./images/usecase1", width="800">
 </p>
 <p align="center">
   <em>Use case - Choosing wordset, chapter</em>
@@ -260,7 +261,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 
 #### Learning Stage
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100887586-78e8f980-34f8-11eb-8607-57ac308a417a.png", width="800">
+<img src="./images/usecase2", width="800">
 </p>
 <p align="center">
   <em>Use case - Learning stage</em>
@@ -276,7 +277,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 
 #### Test Stage
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100887591-7a1a2680-34f8-11eb-8134-f151aa6e4a7e.png", width="950">
+<img src="./images/usecase3", width="950">
 </p>
 <p align="center">
   <em>Use case - Test stage</em>
@@ -292,7 +293,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 
 #### Interrupt/terminate function
 <p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/100887595-7ab2bd00-34f8-11eb-9d4c-1ee60a5005c0.png", width="800">
+<img src="./images/usecase4", width="800">
 </p>
 <p align="center">
   <em>Use case - Interrupt</em>
@@ -319,7 +320,7 @@ Forgetting-stage | 6 hours later | 12 hours later | 24 hours later | 48 hours la
 <br>
 
 <p>
-<img src="https://user-images.githubusercontent.com/69071182/100895766-468fca00-3501-11eb-84d7-0445e304cc89.png", width="800">
+<img src="./images/forgettingrate_db2", width="800">
 </p>
 <p>
   <em>ForgettingRate database</em>
@@ -336,7 +337,7 @@ According to the forgettingrate algorithm defined above, the forgetting rate has
 
 
 ## Conclusion
-Our Demo of this project : 
+Our Demo of this project : https://youtu.be/wHTkzgaj9t8
 
 
 ## You can also see...
