@@ -88,23 +88,6 @@ Brain Engraver consists of four modules. The first module is NUGU AI Speaker and
 </p>
 <br>
 
-   
-
-<p align="center">
-<img src="./images/forgetting_curve.png", width="450">
-</p>
-<p align="center">
-  <em> second!!!!Forgetting-Curve graph</em>
-</p>
-<br>
-<p align="center">
-<img src="./images/db.png", width="950">
-</p>
-<p align="center">
-  <em>Database</em>
-</p>
-<br>
-
 Each user has a forgettingrate table, and the words that passed the learning stage are inserted in the forgettingrate table. The words that are first inserted in the forgettingrate table will have default test time, and the forgettingrate and forgettingstage will be initialized to 0 and 1. During the test stage, if the user answers the question incorrectly, the forgettingstage will not change, and if the answer is correct, the forgettingstage will go up. The graph calculating the forgettingrate for each forgettingstage is different, and the higher the forgettingstage, the slower the forgettingrate decreases. If the same word is answered correctly by user four times in the test stage, it will go to stage 5, long-term memory, and will not be tested again. The forgettingrate is calculated by the difference between the current time and the most recent test time the word is tested. A large gap between the current time and testtime is calculated as a low forgettingrate and it is likely to be extracted during the test stage. Conversely, if the gap between the current time and testtime is not large, the forgettingrate is calculated high, and it is not likely to be extracted during the test stage.
 
 - examStart
