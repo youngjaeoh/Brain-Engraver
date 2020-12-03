@@ -92,8 +92,10 @@ Also checks if the requirements\\are sufficient or not.}\\
 \subsection{Mobile application}
 
 \begin{enumerate}
-\item The purpose of this application is to visually show the users to select the word set, customize their own word set, and to see their progress on memorizing the selected words. On top of this, this mobile application is connected to the external server in order to fetch and pass data to the speaker.
-\item It will run on both iOS and Android OS.
+% \item The purpose of this application is to visually show the users to select the word set, customize their own word set, and to see their progress on memorizing the selected words. On top of this, this mobile application is connected to the external server in order to fetch and pass data to the speaker.
+\item The purpose of this application is to visually show the users wordset and subwordset. 
+
+\item It will run on Android OS.
 \item Login screen
     \begin{enumerate}
     \item ID and password are required to access the user-specific database.
@@ -104,34 +106,35 @@ Also checks if the requirements\\are sufficient or not.}\\
     \end{enumerate}
 \item Word set
     \begin{enumerate}
-    \item The users should be able to choose specific types of word sets to learn. These word sets consist of test vocabularies such as TOEIC and TOEFL.
-    \item If the user requires to make a whole new word set or edit existing word sets, they should be able to add, delete the specific word set of their choice.
-    \item There should be a checkbox next to these word sets in order to show that the user has already learned or currently learning the specific word set.
+    \item The users should be able to see specific types of word sets to learn. These word sets consist of Sub-word set(Chapters).
+    % \item If the user requires to make a whole new word set or edit existing word sets, they should be able to add, delete the specific word set of their choice.
+    % \item There should be a checkbox next to these word sets in order to show that the user has already learned or currently learning the specific word set.
     \end{enumerate}
 \item Sub-word set
     \begin{enumerate}
     \item Inside the word set, there should exist a list of sub-words sets to learn (e.g., Chapter 1, Chapter 2…)
-    \item The user should be able to add, delete the specific sub-word set of their choice.
-    \item There should be a checkbox next to these sub word sets in order to show that the user has already learned or currently learning the specific sub word set.
-    \item The checkbox changes into green if the user finished the whole process; learning stage and the test stage, and into yellow if the user only finished the learning stage.
+    % \item The user should be able to add, delete the specific sub-word set of their choice.
+    % \item There should be a checkbox next to these sub word sets in order to show that the user has already learned or currently learning the specific sub word set.
+    % \item The checkbox changes into green if the user finished the whole process; learning stage and the test stage, and into yellow if the user only finished the learning stage.
     \end{enumerate}
 \item Word
     \begin{enumerate}
-    \item Inside the sub-word sets, the users should be able to see the list of words itself.
-    \item This word list comprises ‘spelling’, ‘meaning’ and ‘play button’ which plays the pronunciation of the word. 
-    \item The user should be able to add, delete the specific word of their choice.
+    \item Inside the sub-word sets, the users should be able to see the list of words.
+    \item This word list comprises ‘spelling’, ‘meaning’. 
+    % ‘play button’ which plays the pronunciation of the word. 
+    % \item The user should be able to add, delete the specific word of their choice.
     \end{enumerate}
 \item Forgetting Curve
     \begin{enumerate}
     \item The application specifies the words into a new group regarding the current position of words in the forgetting curve.
     \item List of to-be-tested words are made regarding the aforementioned information. 
     \end{enumerate}
-\item Settings
-    \begin{enumerate}
-    %\item Users should be able to choose how many words to train for a day.
-    \item Users should be able to choose the training time. More specifically, it should be possible to choose how much for the speaker to repeat the words.
-    \item Users should be able to manage the lights. They can choose whether to turn on or turn off the light. 
-    \end{enumerate}
+% \item Settings
+%     \begin{enumerate}
+%     %\item Users should be able to choose how many words to train for a day.
+%     \item Users should be able to choose the training time. More specifically, it should be possible to choose how much for the speaker to repeat the words.
+%     \item Users should be able to manage the lights. They can choose whether to turn on or turn off the light. 
+%     \end{enumerate}
 \end{enumerate}
 
 
@@ -142,13 +145,13 @@ Also checks if the requirements\\are sufficient or not.}\\
     \begin{enumerate}
     % \item The speaker should repeat the words and show the color nuance with the led light.
     % \item In the learning stage, the traditional red(negative) to green(positive) light spectrum will flick up showing the subtle nuance of the word itself.
-    \item The speaker should repeat the words and the repeating amount of words should be able to be customized in the settings page of the mobile application.
+    \item The speaker should repeat the words three times in 1.6 seconds interval.
     \item The speaker should be able to send the progression rate to the mobile application.
     \end{enumerate}
 \item Test stage
     \begin{enumerate}
     \item The speaker should read only the word, and get meaning as an input from the user.
-    \item If the answer corresponds with the original meaning of the word, green light flicks, and red light flicks otherwise.
+    % \item If the answer corresponds with the original meaning of the word, green light flicks, and red light flicks otherwise.
     \item If the user wishes to know the correct meaning of the answer, the user can always check the mobile application.
     \item The speaker should send the result; correctly-answered word list and incorrectly-answered word list to the mobile application for the data process after.
     \item The speaker should be able to send the progression rate to the mobile application.
@@ -207,7 +210,7 @@ Also checks if the requirements\\are sufficient or not.}\\
     \item For our software development, we will be using mac OS Catalina, Windows 10, and Linux Ubuntu. Windows 10 will be used for developing the mobile application because it is more compatible than any other OS with the software we will be using for application development. Mac OS will be used for the server-side since it is based on Unix. For the server, we are using the AWS EC2 Ubuntu(20.04) free-tier instance.
     \item Programming Language
     \begin{enumerate}
-    \item Python 3.7
+    \item Python 3.8.3
         \begin{itemize}
             \item We are using python for the server-side and the glue language between the mobile application and the AWS server. We chose Python because it is one of the most popular programming language for developing an artificial-intelligence-related-program. Moreover, it can be run on various OS, including Microsoft Windows, Mac OS, and Linux OS. The only drawback that we came to realize was the running speed of the code. If we need a faster speed of the program, we will modularize some of the code into C or C++ code in order to achieve the required speed.
         \end{itemize}
@@ -223,6 +226,8 @@ Also checks if the requirements\\are sufficient or not.}\\
         %     \begin{enumerate}
         %         \item Node.js also uses JavaScript for its programming language, and it is widely used language for server-side programs. Since our Brain-Engraver has a frequent number of inputs and outputs going in and out from the server to the mobile application, Node.js seemed like a wise choice. Also, react-native supports for Node.js.
         %     \end{enumerate}
+        
+        %%%%%%%%%%%% 어플리케이션 바꿀 것
         \item C\#
             \begin{itemize}
                 \item We chose to use C\# programming language for our application development. C\# has an advantage of speed over many other languages, and it is used in Xamarin, which is a framework for application development. Moreover, we have only developed an application before with C\#, so we naturally chose C\# for our app developing langauge.
@@ -231,6 +236,7 @@ Also checks if the requirements\\are sufficient or not.}\\
             \begin{itemize}
                 \item Before Xamarin, in order to develop a certain application for the smartphone, Objective-C, Swift was needed for iOS applications, and Java, Scala, Kotlin was required for Andriod applications. Since for us not having enough time to study many different languages for building the mobile application which has to be runnable on both Android and iOS, we chose Xamarin for developing native apps for Andriod and iOS with same language. Furthermore, Xamarin supports C#, so we decided to use the Xamarin platform. Lastly, for the mobile application, it will run on Android 10, and iOS 14.
             \end{itemize}
+        %%%%%%%%%%%% 어플리케이션 바꿀 것
     \end{enumerate}
     \item Cost Estimation
         \begin{table}[htbp]
@@ -377,13 +383,13 @@ Also checks if the requirements\\are sufficient or not.}\\
 \section{specifications}
 
 \subsection{Mobile Application}
-\begin{figure*}[h]
-    \centering
-    \hfill
-    \includegraphics[width=\textwidth,height=6cm]{images/diagram_app.png}
-    \hfill
-    \caption{Mobile Application Diagram}
-\end{figure*}
+%\begin{figure*}[h]
+%    \centering
+%    \hfill
+%    \includegraphics[width=\textwidth,height=6cm]{images/diagram_app.png}
+%    \hfill
+%    \caption{Mobile Application Diagram}
+%\end{figure*}
 \begin{enumerate}
     \item Login Screen
     \begin{enumerate}
@@ -419,16 +425,16 @@ Also checks if the requirements\\are sufficient or not.}\\
                     \item next to each word set, there is a progress checkbox. This checkbox cannot be changed by the user.
                     \item Change the checkbox into yellow if only the learning stage has been finished. Even the user only finished learning one sub-word set, the checkbox gets changed into yellow.
                     \item Change the checkbox into green if both the learning stage and test stage have been finished. Every sub-word set's test stage has to be finished in order to become color green.
-                    \item Next to every word set, there should be a delete button which deletes the word set and sends a request to the server to delete the word set.
+                    % \item Next to every word set, there should be a delete button which deletes the word set and sends a request to the server to delete the word set.
                 \end{enumerate}
-            \item Add new word set
-                \begin{enumerate}
-                    \item The "+" button shows the user pop-up screen requiring the name of the newly-created word set.
-                    \item The name of the newly-created word set should be longer than one character.
-                    \item The "confirm" button in the pop-up screen generates a new word set and requests the server to generate a new word set to the database.
-                    \item If there already exists a word set with the same name, show message "The name is already being used".
-                    % 학습 및 테스트 할 word set 선택. 유저가 ‘진도율 체크박스’ 옆의 ‘학습 선택 체크박스’ 클릭하면 ‘학습 선택 체크박스’ 초록색으로 변함 + 팝업창 ‘학습할 단어 세트가 선택되었습니다.’ 문구.
-                \end{enumerate}
+            % \item Add new word set
+            %     \begin{enumerate}
+            %         \item The "+" button shows the user pop-up screen requiring the name of the newly-created word set.
+            %         \item The name of the newly-created word set should be longer than one character.
+            %         \item The "confirm" button in the pop-up screen generates a new word set and requests the server to generate a new word set to the database.
+            %         \item If there already exists a word set with the same name, show message "The name is already being used".
+            %         % 학습 및 테스트 할 word set 선택. 유저가 ‘진도율 체크박스’ 옆의 ‘학습 선택 체크박스’ 클릭하면 ‘학습 선택 체크박스’ 초록색으로 변함 + 팝업창 ‘학습할 단어 세트가 선택되었습니다.’ 문구.
+            %     \end{enumerate}
         \end{enumerate}
         \item Sub-word set screen
             \begin{enumerate}
@@ -449,15 +455,15 @@ Also checks if the requirements\\are sufficient or not.}\\
                     \item The sub word set comprises chapters of the word set.
                     \item next to each sub-word set, there is a progress checkbox. This checkbox cannot be changed by the user.
                     \item The checkbox beside the sub-word set that has been learned changes to yellow, and if it has been tested, it changes to green.
-                    \item There is a delete function beside the checkbox, which deletes the sub-word set, and sends a request to the server to delete the set.
+                    % \item There is a delete function beside the checkbox, which deletes the sub-word set, and sends a request to the server to delete the set.
                 \end{enumerate}
-            \item Adding sub-word set
-                \begin{enumerate}
-                    \item The "+" button shows the user pop-up screen requiring the name of the newly-created sub-word set.
-                    \item The name of the newly-created sub-word set should be longer than one character.
-                    \item The "confirm" button in the pop-up screen generates a new sub-word set and requests the server to generate a new sub-word set to the database.
-                    \item If there already exists a sub-word set with the same name, show message "The name is already being used".
-                \end{enumerate}
+            % \item Adding sub-word set
+            %     \begin{enumerate}
+            %         \item The "+" button shows the user pop-up screen requiring the name of the newly-created sub-word set.
+            %         \item The name of the newly-created sub-word set should be longer than one character.
+            %         \item The "confirm" button in the pop-up screen generates a new sub-word set and requests the server to generate a new sub-word set to the database.
+            %         \item If there already exists a sub-word set with the same name, show message "The name is already being used".
+            %     \end{enumerate}
             \item Clicking the sub-word set enables the user to navigate into the word page.
             \end{enumerate}
         \item Word Page
@@ -475,17 +481,17 @@ Also checks if the requirements\\are sufficient or not.}\\
                     \item Move back to word set screen
                 \end{enumerate}
                 \item Word
-                \begin{enumerate}
+                % \begin{enumerate}
                     \item Shows the vocabulary and the meaning of it.
-                    \item There’s a delete button next to every word, which deletes the word and sends a request to the server to delete the word.
-                    \item The “+" button shows the user pop-up screen requiring the name of the newly-created word.
-                    \item The name of the newly-created word should be longer than one character.
-                    \item The "confirm" button in the pop-up screen generates a new word and request the server to generate a new word to the database.
-                    \item If there already exists the same word, show message "The name is already being used”.
-                    \item There are 5 fields that user can add its different meanings.
-                    \item There can only be 200 words within one sub-word set.
-                    \item There is a pronunciation button that plays the pronunciation of the word
-                \end{enumerate}
+                %     \item There’s a delete button next to every word, which deletes the word and sends a request to the server to delete the word.
+                %     \item The “+" button shows the user pop-up screen requiring the name of the newly-created word.
+                %     \item The name of the newly-created word should be longer than one character.
+                %     \item The "confirm" button in the pop-up screen generates a new word and request the server to generate a new word to the database.
+                %     \item If there already exists the same word, show message "The name is already being used”.
+                %     \item There are 5 fields that user can add its different meanings.
+                %     \item There can only be 200 words within one sub-word set.
+                %     \item There is a pronunciation button that plays the pronunciation of the word
+                % \end{enumerate}
             \end{enumerate}
         \item Setting Page
             \begin{enumerate}
@@ -493,16 +499,19 @@ Also checks if the requirements\\are sufficient or not.}\\
                 \item Lights on/off: The user can turn on or off the light of the NUGU speaker.
                 \item The save button at the below saves the settings, then sends the result to the server.
             \end{enumerate}
+        %%%% 세팅 지워 말아 하이고    
+        
     \end{enumerate}
 
 \subsection{NUGU AI Speaker}
-\begin{figure*}[h]
-    \centering
-    \hfill
-    \includegraphics[width=\textwidth,height=6cm]{images/diagram_speaker.png}
-    \hfill
-    \caption{NUGU Speaker Diagram}
-\end{figure*}
+
+%\begin{figure*}[h]
+%    \centering
+%    \hfill
+%    \includegraphics[width=\textwidth,height=6cm]{images/diagram_speaker.png}
+%    \hfill
+%    \caption{NUGU Speaker Diagram}
+%\end{figure*}
 \begin{enumerate}
     \item Learning Stage
     \begin{enumerate}
@@ -594,6 +603,13 @@ Also checks if the requirements\\are sufficient or not.}\\
 \section{Architecture Design \& Implementation}
     \subsection{Overall Architecture}
 Brain Engraver consists of four modules. The first module is NUGU AI Speaker and Android Studio. This module is the front end of our application, which reacts with the user. The second module is the NUGU platform. It gets the voice input from the user and processes using its own ASR, NLU, NLG and TTS engine. Within the NUGU platform, there is "Play Builder" which enables us to add user utterance model and custom actions for it. Third module is HEROKU web sever, which is a PaaS(Platform as a Service). We deployed our application to HEROKU as a dynos, and uploaded the MySQL database along with it. For the database, since HEROKU does not support MySQL, we installed CelarDB MySQL Ignite to the HEROKU to process our original MySQL database. For the last module, we used AWS EC2(Linux Ubuntu Server 20.04). This module was used to test the software features and contructions of MySQL database. This AWS server was connected to the NUGU Platform directly for development purpose.
+\begin{figure}[h]
+    \centering
+    \hfill
+    \includegraphics[width=8cm,height=15cm]{images/diagram1.jpeg}
+    \hfill
+    \caption{Overall Architecture}
+\end{figure}
 
     \subsection{Directory organization}
 
@@ -604,71 +620,387 @@ Brain Engraver consists of four modules. The first module is NUGU AI Speaker and
         \hline
         \textbf{\textit{Directory}}& \textbf{\textit{File name}}& \textbf{\textit{Module name}}\\
         \hline
-        AWS EC2 & \makecell{Server}& \makecell{0}\\
+        Brain-Engraver/app & \makecell{application.py \\ nugu.py \\ db.py \\ forgettingrate.py}& \makecell{AWS EC2 server \\ HEROKU server}\\
         \hline
-        Pycharm & \makecell{Code Editor}& \makecell{0}  \\
+        Brain-Engraver/db & \makecell{Brain\_Engraver.sql}& \makecell{AWS EC2 server \\ HEROKU server}  \\
         \hline\
-        Visual Studio & \makecell{Code Editor}& \makecell{0}  \\
+        Brain-Engraver/server & \makecell{MANIFEST.in \\ Procfile \\ requirements.txt \\ setup.py}& \makecell{HEROKU server}  \\
         \hline\
-        Github & \makecell{Code Repository}& \makecell{0}\\
+        Brain-Engraver/doc & \makecell{main.tex}& \makecell{Documentation}\\
         \hline
-        Github Pages & \makecell{Blog}& \makecell{0}\\
+        \makecell{Brain-Engraver/mobile\\App/java/com.example\\.brainengraver} & \makecell{AboutUs.java\\TOEICActivity.java\\TOEICChapter1Activity.java\\TOEICChapter2Activity.java\\TOEICChapter3Activity.java\\TOEFLActivity.java\\TOEFLChapter1Activity.java\\TOEFLChapter2Activity.java\\TOEFLChapter3Activity.java\\GREActivity.java\\GREChapter1Activity.java\\GREChapter2Activity.java\\GREChapter3Activity.java\\Login.java\\MainAcivity.java\\RegistrationActivity.java}& \makecell{Android Studio}\\
         \hline
-        \makecell{Overleaf}& \makecell{LaTeX Documentation}& \makecell{0}   \\
+        \makecell{Brain-Engraver/mobile\\App/res/drawable} & \makecell{ic\_aboutus.xml\\ic\_check.xml\\ic\_exam.xml\\ic\_home.xml\\ic\_launcher\_background.xml\\ic\_launcher\_foreground.xml\\ic\_logout.xml\\ic\_menu.xml\\ic\_more.xml\\ic\_previous.xml\\ic\_settings.xml\\round\_edittext.xml}& \makecell{Android Studio}\\
         \hline
-        \makecell{Visual Paradigm}& \makecell{UML tool}& \makecell{0}\\
+        \makecell{Brain-Engraver/mobile\\App/res/font} & \makecell{poppins\_bold.xml\\poppins\_medium.xml}& \makecell{Android Studio}\\
         \hline
-        % \makecell{Passport}& \makecell{Authentication middleware}& \makecell{0}\\
-        % \hline
-        % \multicolumn{1}{1}{$^{\mathrm{a}}$Sample of a Table footnote.}
-        
-    
+        \makecell{Brain-Engraver/mobile\\App/res/layout} & \makecell{activity\_about\_use.xml\\activity\_TOEIC.xml\\activity\_TOEIC\_chapter1.xml\\activity\_TOEIC\_chapter2.xml\\activity\_TOEIC\_chapter3.xml\\activity\_TOEFL.xml\\activity\_TOEFL\_chapter1.xml\\acitivity\_TOEFL\_chapter2.xml\\activity\_TOEFL\_chapter3.xml\\activity\_GRE.xml\\activity\_GRE\_chapter1.xml\\acitivity\_GRE\_chapter2.xml\\activity\_GRE\_chapter3.xml\\activity\_exam.xml\\activity\_login.xml\\activity\_main.xml\\main\_nav\_drawer.xml\\main\_toolbar.xml}& \makecell{Android Studio}\\
+        \hline
+        \makecell{Brain-Engraver/mobile\\App/res/values} & \makecell{arrays.xml\\colors.xml\\settings.xml\\}& \makecell{Android Studio}\\
+        \hline
+        \makecell{Brain-Engraver/mobile\\App/res/values\\themes} & \makecell{themes.xml\\themes\_dark.xml}& \makecell{Android Studio}\\
+        \hline
         \end{tabular}
         \label{tab1}
         \end{center}
-        \end{table}
+    \end{table}
 
-\section{Use Cases}
-    \subsection{Installation}
     \begin{enumerate}
-        \item The mobile application can be found in 'Google Play Store'. our application will be recommended when the user searches for certain keywords, such as 'English', 'learning', 'vocabulary', 'memorize'. Simple click button will install it to the user's mobile phone. 
-        \item For the speaker, Brain Engraver is already installed in NUGU application(both Android and iOS). It can be found in the "Education / Kids" catetory under "NUGU PLAY".
-        %여기에 사진 넣으면 좋지 않을까요...?!
+        \item MODULE 1: NUGU AI Speaker / Android Studio
+        \begin{enumerate}
+            \item Purpose
+            \begin{itemize}
+                \item When memorizing a vocabulary, it goes without saying that listening and reading the vocabulary is more effective than just looking. We decided to use NUGU AI Speaker because it enabled us to interact with the user using voice. Moreover, the fact that NUGU platform supports many pre-built actions and intent worked as one of the reason behind choosing the NUGU AI speaker.
+                \item The user can use mobile application to sign in or sign up for their own "ForgettingRate" table.
+                \item The user can check the spelling of the word on the mobile application.
+            \end{itemize}
+            \item Functionality
+                \begin{itemize}
+                    \item NUGU AI Speaker has microphone to get the user's voice and speaker to talk back to the user. It also has a volume up/down and mute/unmute button.
+                \end{itemize}
+        \end{enumerate}
+        
+        \item MODULE 2: NUGU Platform
+            \begin{enumerate}
+            \item Purpose
+                \begin{itemize}
+                    \item NUGU Platform is needed to connect NUGU AI Speaker with Brain Engraver on the server. We used the NUGU platform to assign keywords for intents and made specific HTTP POST requests to send to the server. After receiving the response from the server, it goes through specific action that we programmed such as testing the user.
+                \end{itemize}
+            \item Functionality
+                \begin{itemize}
+                    \item NUGU AI Speaker supports can process the user's voice with ASR(Automatic Speech Recognition), and it can understand the sentence's meaning with NLU(Natural Language Understanding). Moreover, it supports DM(Dialog Management) to send a request to our backend server. After getting the response from the server, by using NLG(Natural Language Generation) along with TTS(Text-to-Speech), it give the user output via natural language.
+                \end{itemize}
+            \end{enumerate}
+            
+        \item MODULE 3: HEROKU Web Server
+            \begin{enumerate}
+                \item Purpose
+                    \begin{itemize}
+                        \item We chose HEROKU web server to release our application because the releasing process is relatively simpler than other web server services. We originally chose AWS Elastic Beanstalk, but it did not support Python 3.8.3, and had several compatibility issues so we chose HEROKU instead. Moreover, since NUGU playbuilder has a server issue of connecting to the backend server, so using HEORKU, which can select to use HTTPS or HTTP, seemed like a wise choice.
+                    \end{itemize}
+                \item Functionality
+                    \begin{itemize}
+                        \item It is used to host the application to the web server. When using AWS EC2 Ubuntu server, the user had to configure every little steps in order to use Brain Engraver, but by using HEROKU, anyone can use the application without installing any libraries or plugins.
+                    \end{itemize}
+                \item Location of source code
+                    \begin{itemize}
+                        \item Brain-Engraver/app
+                    \end{itemize}
+                \item Class component: application.py
+                    \begin{enumerate}
+                        \item Choosing function
+                            \begin{enumerate}
+                                \item Choosing function is developed in the NUGU play builder with three branch actions. It goes through each action when one is finished. It is comprised of "chooseChapter", "chooseWordSet" and "chooseSubWordSet". Each action name is put behind the server's url.
+                                \item chooseChapter()
+                                    \begin{itemize}
+                                        \item It receives action from the server with https://brainengraver.herokuapp.com:5\\500/chooseChapter post method. It replies the NUGU playbuilder blank response. This function is needed because the NUGU AI speaker has to ask the user "Which Chapter to learn? ("어떤 단어셋을 선택하시겠습니까?")" so that the user knows what to reply.
+                                    \end{itemize}
+                                \item chooseWordSet()
+                                    \begin{itemize}
+                                        \item It receives action from the server with https://brainengraver.herokuapp.com:5\\500/chooseWordSet post method. It stores the choosen wordset to the server, more specifically, in the nugu.py. After storing the value, it returns the choosen wordset's name such as "TOEIC", "TOEFL" to the NUGU playbuilder.
+                                    \end{itemize}
+                                \item chooseSubWordSet()
+                                    \begin{itemize}
+                                        \item It receives action from the server with https://brainengraver.herokuapp.com:5\\500/chooseSubWordSet post method. It stores the chosen subwordset from the user to the nugu.py located within the server. After storing the value, it returns the choosen subwordset's name such as "Chapter 1", "Chapter 2" and so on to the NUGU playbuilder.
+                                    \end{itemize}
+                                \item studyStart()
+                                    \begin{itemize}
+                                        \item It receives action from the server with https://brainengraver.herokuapp.com:5\\500/studyStart post method. It fetches the chosen wordset and subwordset from the nugu.py. This function firstly deletes the Study table from the MySQL database on the server, and updates the Study table with the words to learn today. Secondly, it marks the chosen chapter that it has been studied and initializes the forgetting rate to 0, and forgetting stage to 1.
+                                    \end{itemize}
+                                \item word\_1 to 15
+                                    \begin{itemize}
+                                        \item It receives action from the server with https://brainengraver.herokuapp.com:5\\500/word\_1~15 post method. This function returns specific word and its meaning. For example, word\_1() returns the first word from the chosen chapter.
+                                    \end{itemize}
+                                \item examStart()
+                                    \begin{itemize}
+                                        \item It receives action from the server with https://brainengraver.herokuapp.com:5\\500/examStart post method. It fetches the chosen wordset and subwordset. After fetching it, it firstly flushes the Exam table and gets the words that the user has been studied. Secondly, it updates the forgettingrate by calling the update\_forgettingRate() from the forgettingrate.py. Lastly, it updates the Exam table with the words that have low forgettingrate.
+                                    \end{itemize}
+                                \item question\_1 to 15()
+                                    \begin{itemize}
+                                        \item It receives action from the server with https://brainengraver.herokuapp.com:5\\500/answer\_1 to
+                                        15. It revokes the question() function from the nugu.py and gives the user back the word to be tested by the NUGU AI Speaker. User then has to answer it's meaning to the NUGU AI Speaker.
+                                    \end{itemize}
+                                \item answer\_1 to 15()
+                                    \begin{itemize}
+                                        \item It receives action from the server with https://brainengraver.herokuapp.com:5\\500/answer\_1 to 15. It revokes the answer() function from the nugu.py and tells whether the user's answer is correct or not. After this, the function responds with "correctness(if the answer is correct, it is set to correct, and incorrect otherwise)" to the NUGU playbuilder.
+                                        \end{itemize}
+                            \end{enumerate}
+                \item Class component: nugu.py
+                    \begin{enumerate}
+                        \item setWordSet()
+                            \begin{itemize}
+                                \item It stores the choosen wordset and subwordset to the global variable "wordset".
+                            \end{itemize}
+                        \item setSubWordSet()
+                            \begin{itemize}
+                                \item It stores the choosen subwordset to the global variable "subwordset".
+                            \end{itemize}
+                        \item study()
+                            \begin{itemize}
+                                \item It fetches the words to study from the study table in the database and returns the specific word and its meaning to the NUGU Playbuilder.
+                            \end{itemize}
+                        % \item finishstudy()
+                        %     \begin{itemize}
+                        %         \item 
+                        %     \end{itemize}
+                        \item question()
+                            \begin{itemize}
+                                \item It fetches the word to be tested from the db.py and responds to the server with the word.
+                            \end{itemize}
+                        \item answer()
+                            \begin{itemize}
+                                \item It receives the user's answer from the application.py and checks with the original meaning which is fetched from the database. If the user's answer is correct, it returns the server "correct" and "incorrect" otherwise. Furthermore, it calls the update\_forgettingStage() and update\_testTime() in the forgettingrate.py to update forgettingstage and forgettingrate for each answer.
+                            \end{itemize}
+                    \end{enumerate}
+\begin{figure*}[h]
+    \centering
+    \hfill
+    \includegraphics[width=\textwidth, height=7cm]{images/diagram2.png}
+    \hfill
+    \caption{Database}
+\end{figure*}
+                \item Class component: db.py
+                    \begin{enumerate}
+                        \item initDB()
+                            \begin{itemize}
+                                \item It returns pymysql.connect(hostname, port number, username, password, schema name, and charset).
+                            \end{itemize}
+                        \item getDB(query, parameter)
+                            \begin{itemize}
+                                \item It initializes database by calling initDB() and gets query, parameter from other functions and fetches return the rows from the specific table within database.
+                            \end{itemize}
+                        \item setDB()
+                            \begin{itemize}
+                                \item It initializes database by calling initDB() and gets query, parameter from other functions and sets the specific table within database.
+                            \end{itemize}
+                        \item getStudy()
+                            \begin{itemize}
+                                \item Sets the sql statement to select every data from Study table within database and callse getDB()
+                            \end{itemize}
+                        \item getAnswer(question\_id)
+                            \begin{itemize}
+                                \item Sets the sql statement to select specific word and meaning from Word table within database.
+                            \end{itemize}
+                        \item getExamWords(wordSetId, subWordSetId)
+                            \begin{itemize}
+                                \item Sets the sql statement to select 10 from the original test, and adds additional 5 words that is likely to be forgotten and returns the list of exam words.
+                            \end{itemize}
+                        \item setExamWords(word, meaning, wordId)
+                            \begin{itemize}
+                                \item Sets the sql statement to insert word, meaning and value to the table Exam in database and calls setDB().
+                            \end{itemize}
+                        \item deleteExam()
+                            \begin{itemize}
+                                \item Sets the sql statement to flush the Exam table in database and calls setDB().
+                            \end{itemize}
+                        \item getExam()
+                            \begin{itemize}
+                                \item Sets the sql statement to select every data from the Exam table in database and calls getDB().
+                            \end{itemize}
+                        \item getStudiedWords()
+                            \begin{itemize}
+                                \item Sets the sql statement to select only the data that has been studided from Word table in database and calls getDB().
+                            \end{itemize}
+                        \item getForgettingRateWords()
+                            \begin{itemize}
+                                \item Sets the sql statement to select word, meaning from the ForgettingRate table and calls the getDB().
+                            \end{itemize}
+                        \item insert\_ForgettingRate(word, meaning, wordId, wordSetId, subWordSetId)
+                            \begin{itemize}
+                                \item Sets the sql statement to insert studied words into the forgettingrate table in the database with default value, forgettingrate to 0 and forgettingstage to 0 , and calls the setDB().
+                            \end{itemize}
+                        \item deleteStudy()
+                            \begin{itemize}
+                                \item Sets the sql statement to flush the Study table in database and calls setDB().
+                            \end{itemize}
+                        \item getStudyWords(wordSetId, subWordSetId)
+                            \begin{itemize}
+                                \item Sets the sql statement to select the choosen wordset and subwordset's word and calls getDB().
+                            \end{itemize}
+                        \item setStudyWords(word, meaning, wordID)
+                            \begin{itemize}
+                                \item Sets the sql statement to insert studied words into the study table in database and calls setDB(). 
+                            \end{itemize}
+                    \end{enumerate}
+                    %%%%%%%%%%%%%%%%%%%%%뽀게팅레이트.py 설명이요!!!!!
+\begin{figure}[h]
+    \centering
+    \hfill
+    \includegraphics[width=9cm, height=6cm]{forgetting_curve.png}
+    \hfill
+    \caption{Ebbinghaus' forgetting curve}
+\end{figure}
+                \item Class component: forgettingrate.py
+                    \begin{enumerate}
+                        \item update\_testTime(answer)
+                            \begin{itemize}
+                                \item It sets the sql statement to update the testTime in forgettingrate table with time when the function is called and calls setDB().         
+                            \end{itemize}
+                        \item fx(testTime, forgettingStage)
+                            \begin{itemize}
+                                \item It calculates the forgettingrate according to the testtime and forgettingstage. The equation is from the Forgetting Curve of Ebbinghaus and the independent variable is the difference between testtime and time now. Lastly, it returns calculated forgettingrate.
+                            \end{itemize}
+                        \item cal\_forgettingRate(forgettingStage, testTime)
+                            \begin{itemize}
+                                \item It calculates the forgettingrate according to the forgettingstage and the return value of function fx. If the forgettingstage is 5, which means long-term memory, it returns the highest forgettingrate. If the forgettingrate is 1-4, which means short-term memory, it returns the forgettingrate calculated by function fx.   
+                            \end{itemize}
+                        \item update\_forgettingRate(answer)
+                            \begin{itemize}
+                                \item It sets the sql statement to update the forgettingrate from forgettingrate table with newly calculated forgettingrate. If a word has only been studied and has not been tested, it updates the forgetting rate with 0. Lastly, it calls setDB(). 
+                            \end{itemize}
+                        \item update\_forgettingStage(answer, correct)
+                            \begin{itemize}
+                                \item It sets the sql statement to update the forgettingstage according to "correct". If the user's answer is correct, the forgettingstage goes up. If the user's answer is wrong, the forgettingstage does not change.  
+                            \end{itemize}
+                        \item update\_SubWordSet\_studied(wordSetId, subWordSetId)
+                            \begin{itemize}
+                                \item It sets the sql statement to update studied field in word table with 1 and calls setDB().
+                            \end{itemize}
+                    \end{enumerate}
+                
+                \end{enumerate}
+            \end{enumerate}
+        \item MODULE 4: AWS EC2(Linux Ubuntu Server 20.04)
+            \begin{enumerate}
+                \item Purpose
+                    \begin{itemize}
+                        \item We used AWS EC2 Ubuntu server for our development process. We developed the beta program on the Ubuntu and connected it with NUGU Playbuilder for testing purpose. By using AWS EC2, we could add a function or fix the code without impacting the working version of the code.
+                    \end{itemize}
+                \item Founctionality
+                    \begin{itemize}
+                        \item Since it basically like renting a whole Ubuntu computer from Amazon, any type of experiments we wanted to do on Brain Engraver was possible. On top of this, we could configure our working environment just the way we planned before the coding process.
+                    \end{itemize}
+                \item Class component: same as HEROKY web server
+            \end{enumerate}
+        
+        
     \end{enumerate}
+    
+    
+\begin{figure*}[h]
+    \centering
+    \hfill
+    \includegraphics[width=\textwidth, height=24cm]{diagram2.png}
+    \hfill
+    \caption{Diagram}
+    %\vspace{-40pt}
+\end{figure*}
+\section{Use Cases}
+\begin{figure*}[h]
+    \centering
+    \hfill
+    \includegraphics[width=\textwidth, height=3cm]{images/usecase1.png}
+    \hfill
+    \caption{Use case 1}
+\end{figure*}
+\begin{figure*}[h]
+    \centering
+    \hfill
+    \includegraphics[width=\textwidth, height=3.5cm]{images/usecase2.png}
+    \hfill
+    \caption{Use case 2}
+\end{figure*}
+\begin{figure*}[h]
+    \centering
+    \hfill
+    \includegraphics[width=\textwidth, height=4cm]{images/usecase3.png}
+    \hfill
+    \caption{Use case 3}
+\end{figure*}
+\begin{figure*}[h]
+    \centering
+    \hfill
+    \includegraphics[width=\textwidth, height=3.5cm]{images/usecase4.png}
+    \hfill
+    \caption{Use case 4}
+\end{figure*}
+    \subsection{Installation}
+        \begin{enumerate}
+            \item The mobile application can be found in 'Google Play Store'. our application will be recommended when the user searches for certain keywords, such as 'English', 'learning', 'vocabulary', 'memorize'. Simple click button will install it to the user's mobile phone. 
+            \item For the speaker, Brain Engraver is already installed in NUGU application(both Android and iOS). It can be found in the "Education / Kids" catetory under "NUGU PLAY".
+            %여기에 사진 넣으면 좋지 않을까요...?!
+        \end{enumerate}
     \subsection{Starting the application}
-    \begin{enumerate}
-        \item When user launches the Brain Engraver application on the mobile phone, the login page will be shown. If the user does not have an account, user can create a new account using the sign-up button.
-        \item In the NUGU Play"뇌새김" within the NUGU application, there is a sample voice interaction sentences for the user to try.
-        %여기도 사진!!!
-    \subsection{Choosing wordset \& Chapter}
-        \item When the user speaks "아리야, 뇌새김 시작해줘", the NUGU AI speaker says it is launched, and waits for the user to choose a certain function.
-        \item When the user speaks "정하자", the NUGU AI Speaker starts the application and asks the user which chapter to choose. The user can choose the wordset "TOEIC" by speaking "토익", "토플" for "TOEFL", and "지얼이" for "GRE".
-        \item After choosing the wordset to learn, NUGU AI Speaker automatically asks you to choose a chapter(Subwordset). The user can choose the chapter he/she wants by speaking "챕터 일", "챕터 이" and so on.
+        \begin{enumerate}
+            \item The user should first use the mobile application to sign up or sign in to get the token.
+            \item The token is sent to the server, creating the token's own ForgettingRate table.
+            \item When user launches the Brain Engraver application on the mobile phone, the login page will be shown. If the user does not have an account, user can create a new account using the sign-up button.
+            \item In the NUGU Play"뇌새김" within the NUGU application, there is a sample voice interaction sentences for the user to try.
+            \item When the user speaks "아리야, 뇌새김 시작해줘", the NUGU AI speaker says it is launched, and waits for the user to choose a certain function.
+            %여기도 사진!!!
+        \end{enumerate}
+    \subsection{Choosing wordset}
+        \begin{enumerate}
+            \item When the user speaks "정하자", the NUGU AI Speaker starts the application and asks the user which chapter to choose. The user can choose the wordset "TOEIC" by speaking "토익", "토플" for "TOEFL", and "지얼이" for "GRE".
+            \item if the user does not choose the correct chapter, the application terminates
+        \end{enumerate}
+    \subsection{Choosing Chapter}
+        \begin{enumerate}
+            \item After choosing the wordset to learn, NUGU AI Speaker automatically asks you to choose a chapter(Subwordset). The user can choose the chapter he/she wants by speaking "챕터 일", "챕터 이" and so on.
+            \item if the user does not choose the correct chapter, the application terminates.
+            \item when the word set and sub word set has been choosen by the user, the NUGU AI Speaker speaks "TOEIC(TOEFL or GRE) 의 Chapter 1(2 or 3)을 학습하기로 설정 완료했습니다!"
+        \end{enumerate}
     \subsection{Learning stage}
-        \item After choosing the wordset and the chapter(Subwordset), the user starts the "study" function by simply speaking "공부하자".
-        \item In the "study" function, which is the learning stage mentioned above in the specifications, NUGU AI speaker reads the word 3 times.
-        \item In order to learn the next word, the user should say "다음".
-        \item the "study" function terminates when there the choosen chapter is finished.
+        \begin{enumerate}
+            \item After choosing the wordset and the chapter(Subwordset), the user starts the "study" function by simply speaking "공부하자".
+            \item In the "study" function, which is the learning stage mentioned above in the specifications, NUGU AI speaker reads the word 3 times.
+            \item In order to learn the next word, the user should say "다음".
+            \item The "study" function terminates when the chosen chapter is finished.
+            \item If the user wishes to interrupt during the process, the user can just say "아리아, 그만"
+            \item The forgettingstage for each word in the selected chapter is initialized to 1.
+        \end{enumerate}
         %%%%%%%%%%
         % 동희씨!!! 여기에 뽀게팅레이트 스테이지 이니셜라이징 되는거 적어주시면 될 것 같습니다!!!!
         %%%%%%%%%%
         
-    \subsection(Test stage)
+    \subsection{Test stage}
+        \begin{enumerate}
         \item After finishing the learning stage, the user can start the test stage, "exam" function by "시험보자"
+        \item Before starting "exam" function, forgettingrate is updated according to the time when the "exam" function is called.
         \item In the "exam" function, the user goes through total 15 words, which comprises 10 words that the user have just learned in the learning stage, and 5 words that is likely to be forgotten.
         \item 5 words are chosen by the Ebbinghaus's Forgetting Curve theory.
-    \subsection{Turning off}
-        \item In order to finish the application, user can simply say "아리아, 종료
-        "
+        \item The forgettingstage for each word is updated depending on the user's answer.
+        \item The testtime for each word is updated with the time when the speaker received the user's answer.
+        \end{enumerate}
+    
+    \subsection{Check word on mobile application}
+    \begin{enumerate}
+        \item The user can always check the word and its' meaning from the mobile application.
+        \item To check the wordset, click the menu above, click  Word Set, click word set such as TOEIC and click sub word set such as Chapter1.
+    \end{enumerate}
     % %%%%%%%%%
     % 동희씨!!! 여기에는 뽀게팅 레이트 업데이트하는 부분 적어주시면 될 것 같아요!!!!!
     % %%%%%%%%%
-    \subsection{Interrupt function}
-        \item In order to finish the application during the process of "learning stage" or "test stage", user should say "아리아, 그만"
+    \subsection{Interrupt/terminate function}
+        \begin{enumerate}
+        \item In order to finish the application during the process of "learning stage" or "test stage", user should say "아리아, 뇌새김 그만" or "아리아, 뇌새김 닫아줘"
         \item When user says "아리아 , 그만", the application terminates without saving its progress.
+        \item When NUGU speaker is in the session waiting for the user to speak, user can just say "그만" to terminate the process.
+        \end{enumerate}
+    \subsection{Error}
+        The problem behind NUGU playbuilder is that it can only map the specific word to the intent. This means that even though the intent's name is different(same with entity's name and action's name), the invocation word or the word that NUGU spekaer learned cannot be the same. On top of this, Intent created by us was prohibited to use in multiple actions unless its a one -continuously-starting branch action. Originally, we wanted to make a "Exam Function" that only tested the user with the words that the user just learnt, and a "Forgetting Rate Exam Function" to test only the words that the user is likely to forgotten. So naturally, since NUGU playbuilder's restrictions forced us to merge the two "Exam Function" and "Forgetting Rate Function" together. To illustrate a light on the matter, we created two actions for "Exam Function" and "Forgetting Rate Exam Function". Since only one entity type can be mapped to one action, so we had to create two different named entity types named "Answer" and "Forgetting Rate Answer". These two entity types were mapped to each intents, and those intents consists of the meaning of the words. When we ran the program and tested, NUGU playbuilder did not know what request to send, so it did not work. By this reason, we had no choice to merge these two "Exam Function" and "Forgetting Rate Function" together.
+        There were also a problem even when we merged these two actions. The problem was that when user started the exam action for the first time, there would be only 10 questions that the user have learned and 5 blank words that was supposed to be "likely-to-be-forgotten words". Consequently, error occured in the first test. So, in order to solve this problem, we had no choice but to increment 5 more words to the TOEIC's chapter 1. By doing this, on the first exam, NUGU playbuilder gave the test with 15 words that had been learned by the user, and on the second exam, NUGU playbuilder gave 10 just-learned words and 5 likely-to-be-forgotten words.
+        \begin{enumerate}
+            \item When the user's first test is not TOEIC's chapter 1
+            \begin{enumerate}
+                \item Error will not occur in the "learning stage"
+                \item Error will occur in the 11th question of the "test stage"
+                \item When the error occurs, the application will terminate itself
+                \item order to avoid this error, study chapter 1 and take the chapter 1's exam. Afterwords, the error does not occur again.
+            \end{enumerate}
+            \item When the user says things that Brain Engraver cannot understand
+            \begin{enumerate}
+                \item When user speaks repeatedly the things Brain Engraver cannot understand, the application gets terminated.
+            \end{enumerate}
+            \item When the user does not speak
+            \begin{enumerate}
+                \item When the user does not speak during the listening session of the NUGU AI speaker, the application gets terminated.
+            \end{enumerate}
+            \item NUGU Platform server error
+            \begin{enumerate}
+                \item From time to time, NUGU server misacts and sends strange server requests. There are serveral types of nugu server errors that we found. The first one is that even if we change the backend server to another one and save the changes, the NUGU platform sometimes send the request to the previous backend server. Moreover, since our program is based on numerous branch actions, NUGU platform sometimes gets confused and sends previous action's request to the current action. When this kind of error happens, we figured out that waiting is the answer. We believe that it has something to do with ACKs comming late.
+            \end{enumerate}
     \end{enumerate}
-    
-
 
 
 
