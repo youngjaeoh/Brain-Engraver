@@ -1,4 +1,5 @@
 # Brain-Engraver: 
+
 NUGU AI speaker helps you to memorize vocabularies Based on Forgetting Curve. \
 This project is for the AI / SE of HYU.
 
@@ -14,11 +15,7 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 ## Related software and research
 
 ### Memo  Review
-<p align="center">
-<img src="./images/memoreview1.png", width="200">
-<img src="./images/memoreview2.png", width="200">
-</p>
-<br>  
+![스크린샷 2020-12-03 오후 9 56 28](https://user-images.githubusercontent.com/69071182/101020902-806cd900-35b2-11eb-8cbc-99f25e63aa01.png)  
 
 - Feature: Helps the user to memorize vocabularies with various learning methods such as "listen-and-write" and "word  card". It also shows vocabularies on human forgetting curb.
 - Difference: This application  does  not  support  the test  stage  like  Brain-Engraver.  We  compute  the "likely-to-be-forgotten-words"   based   on   test   results  with  the  human  forgetting  curve  algorithm.
@@ -26,11 +23,7 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 - URL: https://apps.apple.com/kr/app/%EB%A9%94%EB%AA%A8%EB%A6%AC%EB%B7%B0-%EC%98%81%EC%96%B4-%EB%8B%A8%EC%96%B4-%EC%88%99%EC%96%B4-%EC%96%B4%ED%9C%98-%EC%82%AC%EC%A0%84-%EC%95%94%EA%B8%B0-%EB%A7%9D%EA%B0%81%EA%B3%A1%EC%84%A0/id1407142605
 
 ### Memorize.ai:  Learn  Lazily
-<p align="center">
-<img src="./images/memorizeai1", width="200">
-<img src="./images/memorizeai2", width="200">
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 58 17](https://user-images.githubusercontent.com/69071182/101021209-fa04c700-35b2-11eb-8fcf-aea53307d3ac.png)
 
 - Feature:  It  uses  artificial  intelligence (they  do  not give  specific  detail  about  what  algorithm  or  what technique  they  used  for  this  application).  It  supports  a  feature  called  "Spaced  Repetition".  This application  supports  LaTeX,  and  code  editors.
 - Difference:  It  is  not  specified  in  memorizing  vocabularies  like  our  Brain-Engraver.
@@ -43,11 +36,7 @@ It  goes  without  saying  that  traditional  text-based memorizing   technique 
 - URL: http://www.riss.kr/search/detail/DetailView.do?p_mat_type=be54d9b8bc7cdb09&control_no=6af046b2297666f0ffe0bdc3ef48d419
 
 ## Datasets
-<p align="center">
-<img src="./images/dataset1", width="350">
-<img src="./images/dataset2", width="400">
-</p>
-<br>  
+![스크린샷 2020-12-03 오후 9 58 27](https://user-images.githubusercontent.com/69071182/101021215-fb35f400-35b2-11eb-9058-99ef29df7d1e.png) 
 
 - It uses three word sets, TOEIC, TOEFL and GRE and each word set consists of three chapters. Each word set was made by referring to the books on the market.
 
@@ -62,10 +51,7 @@ HP  Spectre  x360  Convertible | Intel  Core  i7-8550U,  1.80GHz | 16GB  2208MHz
 
 
 ## Overall architecture
-<p align="center">
-<img src="./images/overallarchitecture", width="400">
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 58 39](https://user-images.githubusercontent.com/69071182/101021216-fbce8a80-35b2-11eb-89b7-3e7531ed6afb.png)
 
 Brain Engraver consists of four modules. The first module is NUGU AI Speaker and Android Studio. This module is the front end of our application, which reacts with the user. The second module is the NUGU platform. It gets the voice input from the user and processes using its own ASR, NLU, NLG and TTS engine. Within the NUGU platform, there is "Play Builder" which enables us to add user utterance model and custom actions for it. Third module is HEROKU web sever, which is a PaaS(Platform as a Service). We deployed our application to HEROKU as a dynos, and uploaded the MySQL database along with it. For the database, since HEROKU does not support MySQL, we installed CelarDB MySQL Ignite to the HEROKU to process our original MySQL database. For the last module, we used AWS EC2(Linux Ubuntu Server 20.04). This module was used to test the software features and contructions of MySQL database. This AWS server was connected to the NUGU Platform directly for development purpose.
 
@@ -73,20 +59,9 @@ Brain Engraver consists of four modules. The first module is NUGU AI Speaker and
 ## Methodology
 ### Forgetting-Curve Algorithm
 
-<p align="center">
-<img src="./images/forgetting_curve.png", width="450">
-</p>
-<p align="center">
-  <em>Forgetting-Curve graph</em>
-</p>
-<br>
-<p align="center">
-<img src="./images/db.png", width="950">
-</p>
-<p align="center">
-  <em>Database</em>
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 58 52](https://user-images.githubusercontent.com/69071182/101021220-fc672100-35b2-11eb-99c6-75ab7ace1898.png)
+
+![스크린샷 2020-12-03 오후 9 58 59](https://user-images.githubusercontent.com/69071182/101021223-fc672100-35b2-11eb-9952-9596be7a2988.png)
 
 Each user has a forgettingrate table, and the words that passed the learning stage are inserted in the forgettingrate table. The words that are first inserted in the forgettingrate table will have default test time, and the forgettingrate and forgettingstage will be initialized to 0 and 1. During the test stage, if the user answers the question incorrectly, the forgettingstage will not change, and if the answer is correct, the forgettingstage will go up. The graph calculating the forgettingrate for each forgettingstage is different, and the higher the forgettingstage, the slower the forgettingrate decreases. If the same word is answered correctly by user four times in the test stage, it will go to stage 5, long-term memory, and will not be tested again. The forgettingrate is calculated by the difference between the current time and the most recent test time the word is tested. A large gap between the current time and testtime is calculated as a low forgettingrate and it is likely to be extracted during the test stage. Conversely, if the gap between the current time and testtime is not large, the forgettingrate is calculated high, and it is not likely to be extracted during the test stage.
 
@@ -146,13 +121,7 @@ In the examstart, it updates the forgettingrate by calling the update_forgetting
 In the update_forgettingRate, it updates the forgettingrate from forgettingrate table with newly calculated forgettingrate. If a word has only been studied and has not been tested, it updates the forgettingrate with 0. New forgettingrate is calculated in cal_forgettingRate function according to forgettingstage and testtime of each word. 
 
 - fx, cal_forgettingrate
-<p align="center">
-<img src="./images/equation", width="200">
-</p>
-<p align="center">
-  <em>Forgetting-rate equation in forgetting-stage 1</em>
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 59 08](https://user-images.githubusercontent.com/69071182/101021224-fcffb780-35b2-11eb-9b64-17be0013f9a1.png)
 
 ```
     def fx(testTime, forgettingStage):
@@ -215,24 +184,9 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 ## Use cases
 
 ### Mobile application
-<p align="center">
-<img src="./images/application", width="200">
-</p>
-<p align="center">
-  <em>NUGU play 뇌새김</em>
-</p>
-<br>
-<p align="center">
-<img src="./images/mobile1", width="170">
-<img src="./images/mobile2", width="170">
-<img src="./images/mobile3", width="170">
-<img src="./images/mobile5", width="170">
-<img src="./images/mobile6", width="170">
-</p>
-<p align="center">
-  <em>Mobile application</em>
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 59 18](https://user-images.githubusercontent.com/69071182/101021226-fd984e00-35b2-11eb-8281-64ac8057b00b.png)
+
+![스크린샷 2020-12-03 오후 9 59 28](https://user-images.githubusercontent.com/69071182/101021228-fd984e00-35b2-11eb-80d7-279aca4ef54b.png)
 
 - The user should first use the mobile application to sign up or sign in to get the token.
 - The token is sent to the server, creating the token's own ForgettingRate table.
@@ -243,13 +197,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 ### NUGU AI Speaker
 
 #### Choosing Wordset
-<p align="center">
-<img src="./images/usecase1", width="800">
-</p>
-<p align="center">
-  <em>Use case - Choosing wordset, chapter</em>
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 59 37](https://user-images.githubusercontent.com/69071182/101021229-fe30e480-35b2-11eb-866d-a75e8ea58ab7.png)
 
 - When the user speaks "정하자", the NUGU AI Speaker starts the application and asks the user which chapter to choose. The user can choose the wordset "TOEIC" by speaking "토익", "토플" for "TOEFL", and "지얼이" for "GRE".
 - If the user does not choose the correct chapter, the application terminates
@@ -260,13 +208,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - When the word set and sub word set has been choosen by the user, the NUGU AI Speaker speaks "TOEIC(TOEFL or GRE) 의 Chapter 1(2 or 3)을 학습하기로 설정 완료했습니다!"
 
 #### Learning Stage
-<p align="center">
-<img src="./images/usecase2", width="800">
-</p>
-<p align="center">
-  <em>Use case - Learning stage</em>
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 59 44](https://user-images.githubusercontent.com/69071182/101021231-fec97b00-35b2-11eb-9391-a49068ed4cfd.png)
 
 - After choosing the wordset and the chapter(Subwordset), the user starts the "study" function by simply speaking "공부하자".
 - In the "study" function, which is the learning stage mentioned above in the specifications, NUGU AI speaker reads the word 3 times.
@@ -276,13 +218,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The forgettingstage for each word in the selected chapter is initialized to 1.
 
 #### Test Stage
-<p align="center">
-<img src="./images/usecase3", width="950">
-</p>
-<p align="center">
-  <em>Use case - Test stage</em>
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 59 52](https://user-images.githubusercontent.com/69071182/101021232-fec97b00-35b2-11eb-863b-3adeecd8cc1d.png)
 
 - After finishing the learning stage, the user can start the test stage, "exam" function by "시험보자"
 - Before starting "exam" function, forgettingrate is updated according to the time when the "exam" function is called.
@@ -292,13 +228,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The testtime for each word is updated with the time when the speaker received the user's answer.
 
 #### Interrupt/terminate function
-<p align="center">
-<img src="./images/usecase4", width="800">
-</p>
-<p align="center">
-  <em>Use case - Interrupt</em>
-</p>
-<br>
+![스크린샷 2020-12-03 오후 9 59 58](https://user-images.githubusercontent.com/69071182/101021233-ff621180-35b2-11eb-9999-31e5b5ccaa94.png)
 
 - In order to finish the application during the process of "learning stage" or "test stage", user should say "아리아, 뇌새김 그만" or "아리아, 뇌새김 닫아줘"
 - When user says "아리아 , 그만", the application terminates without saving its progress.
@@ -319,13 +249,7 @@ Forgetting-stage | 6 hours later | 12 hours later | 24 hours later | 48 hours la
 </p>
 <br>
 
-<p>
-<img src="./images/forgettingrate_db2", width="800">
-</p>
-<p>
-  <em>ForgettingRate database</em>
-</p>
-<br>
+![스크린샷 2020-12-03 오후 10 00 08](https://user-images.githubusercontent.com/69071182/101021235-ff621180-35b2-11eb-92f3-5be083e85466.png)
 
 According to the forgettingrate algorithm defined above, the forgetting rate has a value from 0 to 10000. The reason for not defining the forgetting rate as 0-100% is to avoid same values as much as possible. In addition, if the test is re-tested within a short period of time, the forgetting rate can be very high, so if the forgettingrate is calculated higher than 10000, the forgettingrate is updated with 10000. In the case of long-term memory, the forgettingrate remains unchanged and continues to remain at 20000, which is always higher than the forgettingrate of the words in stage 1 to 4. According to the table above, the forgettingrate becomes lower over time, but at a higher stage, the forgettingrate remains high over time, and then decreases slowly. It appears that the higher the stage, the higher the forgettingrate. After the actual test phase, because the user's response time varies in seconds, the same forgettingrate is rarely found. As a result, it can extract five words that have lower forgettingrate. In the above ForgettingRate database image, the testtime is different in seconds, and the forgettingrate is stored differently for each word. 
 
