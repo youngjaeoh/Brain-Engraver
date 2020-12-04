@@ -197,7 +197,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 ### NUGU AI Speaker
 
 #### Choosing Wordset
-![스크린샷 2020-12-03 오후 9 59 37](https://user-images.githubusercontent.com/69071182/101021229-fe30e480-35b2-11eb-866d-a75e8ea58ab7.png)
+![usecase_new_small1](https://user-images.githubusercontent.com/69071182/101136538-d2fcd280-3650-11eb-89ea-7c28d3816afc.png)
 
 - When the user speaks "정하자", the NUGU AI Speaker starts the application and asks the user which chapter to choose. The user can choose the wordset "TOEIC" by speaking "토익", "토플" for "TOEFL", and "지얼이" for "GRE".
 - If the user does not choose the correct chapter, the application terminates
@@ -208,7 +208,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - When the word set and sub word set has been choosen by the user, the NUGU AI Speaker speaks "TOEIC(TOEFL or GRE) 의 Chapter 1(2 or 3)을 학습하기로 설정 완료했습니다!"
 
 #### Learning Stage
-![스크린샷 2020-12-03 오후 9 59 44](https://user-images.githubusercontent.com/69071182/101021231-fec97b00-35b2-11eb-9391-a49068ed4cfd.png)
+![usecase_new_small2](https://user-images.githubusercontent.com/69071182/101136542-d55f2c80-3650-11eb-8b2b-118d240f3ae4.png)
 
 - After choosing the wordset and the chapter(Subwordset), the user starts the "study" function by simply speaking "공부하자".
 - In the "study" function, which is the learning stage mentioned above in the specifications, NUGU AI speaker reads the word 3 times.
@@ -218,7 +218,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The forgettingstage for each word in the selected chapter is initialized to 1.
 
 #### Test Stage
-![스크린샷 2020-12-03 오후 9 59 52](https://user-images.githubusercontent.com/69071182/101021232-fec97b00-35b2-11eb-863b-3adeecd8cc1d.png)
+![usecase_new_small3](https://user-images.githubusercontent.com/69071182/101136545-d6905980-3650-11eb-86bc-6bc2036bc25d.png)
 
 - After finishing the learning stage, the user can start the test stage, "exam" function by "시험보자"
 - Before starting "exam" function, forgettingrate is updated according to the time when the "exam" function is called.
@@ -228,7 +228,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The testtime for each word is updated with the time when the speaker received the user's answer.
 
 #### Interrupt/terminate function
-![스크린샷 2020-12-03 오후 9 59 58](https://user-images.githubusercontent.com/69071182/101021233-ff621180-35b2-11eb-9999-31e5b5ccaa94.png)
+![usecase_new_small4](https://user-images.githubusercontent.com/69071182/101136546-d728f000-3650-11eb-8a6b-7b89480ea485.png)
 
 - In order to finish the application during the process of "learning stage" or "test stage", user should say "아리아, 뇌새김 그만" or "아리아, 뇌새김 닫아줘"
 - When user says "아리아 , 그만", the application terminates without saving its progress.
