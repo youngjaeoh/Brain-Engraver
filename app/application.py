@@ -3,7 +3,7 @@ from flask import Flask, request, json
 import db
 import nugu
 import forgettingrate
-
+import auth
 
 readCount = 1
 
@@ -53,7 +53,6 @@ def studyStart():
         db.insert_ForgettingRate(word[1], word[2], word[3], wordSetId, subWordSetId) # study 안 하고 시험 볼 수는 없는 구조
 
     # forgettingStage 0인 단어들 1로 업데이트
-    # 이거 이제 없어도 됨
     forgettingrate.init_forgettingStage(wordSetId, subWordSetId)
 
     response = commonResponse
@@ -139,71 +138,77 @@ def chooseWordSet():
 def chooseSubWordSet():
     response = commonResponse
     data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
-    myChosenWordset = data['action']['parameters']['subwordset']['value']
-    print("what did you say?: ", myChosenWordset)
+    SmyChosenWordset = data['action']['parameters']['subwordset']['value']
+    print("what did you say?: ", SmyChosenWordset)
 
-    # if SmyChosenWordset == "챕터 일":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "일단원":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "일":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "챕터 1":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "챕터일":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "첍터 일":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "첍터일":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "췝터일":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "췝터 일":
-    #     myChosenWordset = "챕터 일"
-    # elif SmyChosenWordset == "챕터 이":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "이단원":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "이":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "챕터 2":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "챕터이":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "첍터 이":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "첍터이":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "췝터이":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "췝터 이":
-    #     myChosenWordset = "챕터 이"
-    # elif SmyChosenWordset == "삼단원":
-    #     myChosenWordset = "챕터 삼"
-    # elif SmyChosenWordset == "삼":
-    #     myChosenWordset = "챕터 삼"
-    # elif SmyChosenWordset == "챕터 삼":
-    #     myChosenWordset = "챕터 삼"
-    # elif SmyChosenWordset == "챕터 3":
-    #     myChosenWordset = "챕터 삼"
-    # elif SmyChosenWordset == "챕터삼":
-    #     myChosenWordset = "챕터 삼"
-    # elif SmyChosenWordset == "첍터 삼":
-    #     myChosenWordset = "챕터 삼"
-    # elif SmyChosenWordset == "첍터삼":
-    #     myChosenWordset = "챕터 삼"
-    # elif SmyChosenWordset == "췝터삼":
-    #     myChosenWordset = "챕터 삼"
-    # elif SmyChosenWordset == "췝터 삼":
-    #     myChosenWordset = "챕터 삼"
-    # else:
-    #     myChosenWordset = "챕터 삼"
+    if SmyChosenWordset == "챕터 일":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "일단원":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "일":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "챕터 1":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "챕터일":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "첍터 일":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "첍터일":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "췝터일":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "췝터 일":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "챕터 이":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "이단원":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "이":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "챕터 2":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "챕터이":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "첍터 이":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "첍터이":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "췝터이":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "췝터 이":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "삼단원":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "삼":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "챕터 삼":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "챕터 3":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "챕터삼":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "첍터 삼":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "첍터삼":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "췝터삼":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "췝터 삼":
+        myChosenWordset = "챕터 삼"
+    elif SmyChosenWordset == "일단원":
+        myChosenWordset = "챕터 일"
+    elif SmyChosenWordset == "이단원":
+        myChosenWordset = "챕터 이"
+    elif SmyChosenWordset == "삼단원":
+        myChosenWordset = "챕터 삼"
+    else:
+        myChosenWordset = "챕터 삼"
 
-    if myChosenWordset == "일단원":
+    if myChosenWordset == "챕터 일":
         response['output']['chooseSubWordSet'] = 'Chapter 1'
         index = 1
         nugu.setSubWordSet("Chapter 1", index)
-    elif myChosenWordset == "이단원":
+    elif myChosenWordset == "챕터 이":
         response['output']['chooseSubWordSet'] = 'Chapter 2'
         index = 2
         nugu.setSubWordSet("Chapter 2", index)
@@ -227,18 +232,57 @@ def examStart():
     wordSetId = nugu.wordsetid
     subWordSetId = nugu.subwordsetid
 
-    # exam table flush
+
+    # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
+
+    # token parsing
+    data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
+    token = data['context']['session']['accessToken']
+
+
+    print("this is the token!!!!!!!!!: ", token)
+
+    # 회원인지 확인 -> POST https://api.github.com/user
+    url = "https://api.github.com/user"
+
+    oauthresponse = auth.requestUser(url, token)
+
+    print("@@@@@@@@@@@@@application")
+    print("applicationresponse: ", oauthresponse)
+    print("@@@@@@@@@@@@@application")
+
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(oauthresponse['login'])
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+    ###### 여기까지 아이디랑, 토큰을 다 받아왔음!!!!! 진짜 최고다!!!!!!!!!!
+
+
+    # userId = auth.requestUser(url, token)
+    #
+    # # response에 type이 어떤지 알아봐야 함.
+    # # response 값에 따라 user DB 구
+    # # 회원 없으면,
+    # if db.getUser(userId) != '':
+    #     # 회원 DB에 등록
+    #     db.setUser(userId)
+    # # 회원 있으면,
+    # else:
+    #     # token만 저장
+    #     db.setToken(userId, token)
+
+
+
+
+
+    # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
+
+
+
     db.deleteExam()
-
-    
     studied_words = db.getForgettingRateWords()
-
-    ## 여기서 업데이트를 이것만 하면 안되지 전부 다 해야지
     for word in studied_words:#
         forgettingrate.update_forgettingRate(word[1]) # meaning 넘겨줌
-
-    #words = db.getLowForgettingRate()    
-
     """
     # ForgettingRate db에 있는 단어 전부 다 forgettingrate 업데이트
     forgetting_words = db.getForgettingRateWords_All()
@@ -248,24 +292,15 @@ def examStart():
     
     ## getExamWords 바로 전에 forgettingrate 업데이트
     """
-
     # exam table에 공부할 단어 등록
     words = db.getExamWords(wordSetId, subWordSetId)
-    
-    # print("=============================")
-    # print(words)
-    # print("=============================")
-    
+
     for word in words:
         db.setExamWords(word[0], word[1], word[2])
 
     response = commonResponse
     response['output']['testWordSet'] = wordSet
     response['output']['testSubWordSet'] = subWordSet
-
-    # print("@@@@@@@@@@@@@@")
-    # print(response)
-    # print("@@@@@@@@@@@@@@\n")
 
     return json.dumps(response)
 
