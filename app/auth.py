@@ -10,7 +10,4 @@ def requestUser(url, token):
     response = requests.request("GET", url, headers=headers)
     print(response.json())
     jsonedResponse = response.json()
-    print("@@@@@@@@@@!!!@!@!@!")
-    print(jsonedResponse)
-    print("@@@@@@@@@@!!!@!@!@!@")
     return jsonedResponse

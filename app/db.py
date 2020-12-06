@@ -177,10 +177,19 @@ def setStudyWords(word, meaning, wordId):
     sql = 'INSERT INTO Study (word, meaning, wordId) VALUES (%s, %s, %s)'
     setDB(sql, (word, meaning, wordId))
 
+def getUser(userId):
+    # sql = 'SELECT userId from User WHERE userId = %s'
+    sql = 'SELECT userId FROM brainEngraver.User WHERE userId = %s'
+    return getDB(sql, (userId))
+
+def setUser(userId):
+    sql = 'INSERT INTO User (userId) VALUE %s'
+    print("here we done?")
+    setDB(sql, (userId))
+
+def setToken(userId, token):
+    sql = 'INSERT INTO User (userId, token) VALUES (%s, %s)'
+    setDB(sql, (userId, token))
+
 if __name__ == '__main__':
-    # p(getCalendar('개강'))
-    # p(getCalendar('중간고사'))
-    # p(getCalendarIncludeSemester('중간고사','1학기'))
-    # p(getNoticeIncludeLink(1))
-    # p(getNotice())
     pass

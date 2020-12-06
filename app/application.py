@@ -247,33 +247,12 @@ def examStart():
 
     oauthresponse = auth.requestUser(url, token)
 
-    print("@@@@@@@@@@@@@application")
-    print("applicationresponse: ", oauthresponse)
-    print("@@@@@@@@@@@@@application")
+    userId = oauthresponse['login']
 
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print(oauthresponse['login'])
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-    ###### 여기까지 아이디랑, 토큰을 다 받아왔음!!!!! 진짜 최고다!!!!!!!!!!
-
-
-    # userId = auth.requestUser(url, token)
-    #
-    # # response에 type이 어떤지 알아봐야 함.
-    # # response 값에 따라 user DB 구
-    # # 회원 없으면,
-    # if db.getUser(userId) != '':
-    #     # 회원 DB에 등록
-    #     db.setUser(userId)
-    # # 회원 있으면,
-    # else:
-    #     # token만 저장
-    #     db.setToken(userId, token)
-
-
-
-
+    strrrrUserId = db.getUser(userId)
+    if strrrrUserId == 0:
+        print("no id!!! making a new one")
+        db.setToken(userId, token)
 
     # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
 
