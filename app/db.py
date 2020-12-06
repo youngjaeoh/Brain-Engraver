@@ -1,6 +1,8 @@
 import pymysql
 import nugu
 
+
+
 def initDB():
     db = pymysql.connect(
         host='localhost',
@@ -36,7 +38,7 @@ def postTest():
     db = initDB()
     cursor = db.cursor()
 
-    sql = "INSERT INTO User(id, userId, name, password) VALUES (6, 'kiMin', 'kiMin', '1234');"
+    sql = "INSERT INTO User(id, userId, name, password) VALUES (6, 'young', 'young', '1234');"
     cursor.execute(sql)
 
     db.commit()
@@ -69,7 +71,7 @@ def getWordSet(data):
     sql = 'SELECT name, meaning FROM Word WHERE wordSetId = %s AND subWordSetId = %s'
     return getDB(sql, (data['wordSet'], data['subWordSet']))
 
-def getExamWords(wordSetId, subWordSetId):
+def getExamWords(wordSetId, subWordSetId, userId):
     # Chapter 1 일때,
     if subWordSetId == 1:
         # 15개 다
@@ -81,7 +83,7 @@ def getExamWords(wordSetId, subWordSetId):
         sql = 'SELECT word, meaning, id FROM Word WHERE wordSetId = %s AND subWordSetId = %s'
         examList = getDB(sql, (wordSetId, subWordSetId))
         # forgettingRate에서 5개 골라야 함.
-        sql = 'SELECT word, meaning, id FROM ForgettingRate WHERE NOT (wordSetId = %s AND subWordSetId = %s) ORDER BY forgettingRate ASC LIMIT 5'
+        sql = 'SELECT word, meaning, id FROM forgettingRate_'+userId+' WHERE NOT (wordSetId = %s AND subWordSetId = %s) ORDER BY forgettingRate ASC LIMIT 5'
         newList = getDB(sql, (wordSetId, subWordSetId))
         examList += newList
 
@@ -139,22 +141,31 @@ def getLowForgettingRate():
 #     sql = 'SELECT word, meaning FROM Word WHERE wordSetId = %s AND subWordSetId = %s'
 #     return getDB(sql, (wordSetId, subWordSetId))
 
-def getForgettingRateWords():
-    sql = 'SELECT word, meaning FROM ForgettingRate'
+def getForgettingRateWords(userId):
+    # sql = 'CREATE TABLE `forgettingRate_' + userId + '`(`id` INT NOT NULL)'
+    # sql = 'SELECT word, meaning FROM ForgettingRate'
+    #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    sql = 'SELECT word, meaning FROM forgettingRate_' +userId
+    # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     return getDB(sql,())
 
 def getForgettingRateWords_All():
     sql = 'SELECT word, meaning FROM ForgettingRate'
     return getDB(sql,())
 
-def insert_ForgettingRate(word, meaning, wordId, wordSetId, subWordSetId):
-    sql2 = "SELECT word FROM ForgettingRate WHERE wordId = %s"
+def insert_ForgettingRate(word, meaning, wordId, wordSetId, subWordSetId, userId):
+    print("&&&&&&&&&&&&&&&")
+    print(wordId)
+    print(type(wordId))
+    print(userId)
+    print("&&&&&&&&&&&&&&&")
+    sql2 = 'SELECT word FROM forgettingRate_' +userId+ ' WHERE wordId = %s'
     alreadyExist = getDB(sql2, (wordId))
 
     if not alreadyExist:
         defaultTestTime  = '2000-10-10 10:10:10'
-        sql = 'INSERT INTO ForgettingRate ' \
-              '(wordId, forgettingRate, forgettingStage, testTime, wordSetId, subWordSetId, studied, word, meaning)' \
+        sql = 'INSERT INTO forgettingRate_'+userId+'' \
+              ' (wordId, forgettingRate, forgettingStage, testTime, wordSetId, subWordSetId, studied, word, meaning)' \
               ' VALUES (%s, 0, 1, %s, %s, %s, 1, %s, %s)'
         setDB(sql, (wordId, defaultTestTime, wordSetId, subWordSetId, word, meaning))
 
@@ -190,6 +201,20 @@ def setUser(userId):
 def setToken(userId, token):
     sql = 'INSERT INTO User (userId, token) VALUES (%s, %s)'
     setDB(sql, (userId, token))
+
+def createTable(userId):
+    print("before create")
+    sql = 'CREATE TABLE `forgettingRate_' + userId + '`(`id` INT NOT NULL AUTO_INCREMENT,`wordId` INT NOT NULL, `forgettingRate` FLOAT NOT NULL, `forgettingStage` INT NOT NULL, `testTime` DATETIME NOT NULL, `wordSetId` INT, `subWordSetId` INT, `studied` INT, `word` VARCHAR(45) NOT NULL, `meaning` VARCHAR(45) NOT NULL, PRIMARY KEY(`id`))'
+    # sql = 'CREATE TABLE `forgettingRate_' + userId +'`(`wordId` INT NOT NULL)'
+    print(sql)
+    db = initDB()
+    cursor = db.cursor()
+    cursor.execute(sql)
+    db.commit()
+    db.close()
+    print("this is working")
+
+    # print("after create")
 
 if __name__ == '__main__':
     pass

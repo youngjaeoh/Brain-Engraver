@@ -1,6 +1,8 @@
 from flask import request, json
 import db
 import forgettingrate
+import auth
+
 
 commonResponse = {
     'version': '2.0',
@@ -14,10 +16,15 @@ exceptionResponse = {
     'output': {}
 }
 
-wordset = ""
-subwordset = ""
-wordsetid = 0
-subwordsetid = 0
+wordset = "GRE"
+subwordset = "Chapter1"
+wordsetid = 3
+subwordsetid = 1
+
+
+
+
+
 
 def setWordSet(name, index):
     global wordset
@@ -65,7 +72,7 @@ def forgetting_question(index):
 
     return json.dumps(response)
 
-def answer(index):
+def answer(index, userId):
     data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
     # print("@@@@@@@@@@@")
     # print(data)
@@ -82,8 +89,8 @@ def answer(index):
         correctness = '오답입니다.'
         correct = 0
 
-    forgettingrate.update_forgettingStage(answer, correct)#######
-    forgettingrate.update_testTime(answer)############
+    forgettingrate.update_forgettingStage(answer, correct, userId)#######
+    forgettingrate.update_testTime(answer, userId)############
 
     response = commonResponse
     response['output']['correctness'] = correctness

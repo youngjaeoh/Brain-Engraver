@@ -36,6 +36,36 @@ def studyStart():
     wordSetId = nugu.wordsetid
     subWordSetId = nugu.subwordsetid
 
+    # # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
+    #
+    # # token parsing
+    # data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
+    # token = data['context']['session']['accessToken']
+    #
+    #
+    # print("this is the token!!!!!!!!!: ", token)
+    #
+    # # 회원인지 확인 -> POST https://api.github.com/user
+    # url = "https://api.github.com/user"
+    #
+    # oauthresponse = auth.requestUser(url, token)
+    #
+    # userId = oauthresponse['login']
+    #
+    # strrrrUserId = db.getUser(userId)
+    # if strrrrUserId == 0:
+    #     print("no id!!! making a new one")
+    #     db.setToken(userId, token)
+    #     db.createTable(userId)
+    # else:
+    #     pass
+    #
+    #
+    # # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
+
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+
     # Study table 에 공부할 단어 저장
     db.deleteStudy()
     words = db.getStudyWords(wordSetId, subWordSetId)
@@ -50,10 +80,10 @@ def studyStart():
 
     # 공부할 단어들 forgettingRate table에 넣기
     for word in study_words: # study 하면 forgettingRate db에 추가
-        db.insert_ForgettingRate(word[1], word[2], word[3], wordSetId, subWordSetId) # study 안 하고 시험 볼 수는 없는 구조
+        db.insert_ForgettingRate(word[1], word[2], word[3], wordSetId, subWordSetId, userId) # study 안 하고 시험 볼 수는 없는 구조
 
     # forgettingStage 0인 단어들 1로 업데이트
-    forgettingrate.init_forgettingStage(wordSetId, subWordSetId)
+    forgettingrate.init_forgettingStage(wordSetId, subWordSetId, userId)
 
     response = commonResponse
     response['output']['wordSet'] = wordSet
@@ -233,35 +263,39 @@ def examStart():
     subWordSetId = nugu.subwordsetid
 
 
-    # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
-
-    # token parsing
-    data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
-    token = data['context']['session']['accessToken']
-
-
-    print("this is the token!!!!!!!!!: ", token)
-
-    # 회원인지 확인 -> POST https://api.github.com/user
-    url = "https://api.github.com/user"
-
-    oauthresponse = auth.requestUser(url, token)
-
-    userId = oauthresponse['login']
-
-    strrrrUserId = db.getUser(userId)
-    if strrrrUserId == 0:
-        print("no id!!! making a new one")
-        db.setToken(userId, token)
-
-    # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
-
-
+    # # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
+    #
+    # # token parsing
+    # data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
+    # token = data['context']['session']['accessToken']
+    #
+    #
+    # print("this is the token!!!!!!!!!: ", token)
+    #
+    # # 회원인지 확인 -> POST https://api.github.com/user
+    # url = "https://api.github.com/user"
+    #
+    # oauthresponse = auth.requestUser(url, token)
+    #
+    # userId = oauthresponse['login']
+    #
+    # strrrrUserId = db.getUser(userId)
+    # if strrrrUserId == 0:
+    #     print("no id!!! making a new one")
+    #     db.setToken(userId, token)
+    #     db.createTable(userId)
+    # else:
+    #     pass
+    #
+    #
+    # # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
 
     db.deleteExam()
-    studied_words = db.getForgettingRateWords()
+    studied_words = db.getForgettingRateWords(userId)
     for word in studied_words:#
-        forgettingrate.update_forgettingRate(word[1]) # meaning 넘겨줌
+        forgettingrate.update_forgettingRate(word[1], userId) # meaning 넘겨줌
     """
     # ForgettingRate db에 있는 단어 전부 다 forgettingrate 업데이트
     forgetting_words = db.getForgettingRateWords_All()
@@ -272,7 +306,7 @@ def examStart():
     ## getExamWords 바로 전에 forgettingrate 업데이트
     """
     # exam table에 공부할 단어 등록
-    words = db.getExamWords(wordSetId, subWordSetId)
+    words = db.getExamWords(wordSetId, subWordSetId, userId)
 
     for word in words:
         db.setExamWords(word[0], word[1], word[2])
@@ -358,7 +392,9 @@ def question_1():
 
 @app.route('/answer_1', methods=['POST'])
 def answer_1():
-    return nugu.answer(1)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(1, userId)
 
 @app.route('/question_2', methods=['POST'])
 def question_2():
@@ -366,7 +402,9 @@ def question_2():
 
 @app.route('/answer_2', methods=['POST'])
 def answer_2():
-    return nugu.answer(2)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(2, userId)
 
 @app.route('/question_3', methods=['POST'])
 def question_3():
@@ -374,7 +412,9 @@ def question_3():
 
 @app.route('/answer_3', methods=['POST'])
 def answer_3():
-    return nugu.answer(3)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(3, userId)
 
 @app.route('/question_4', methods=['POST'])
 def question_4():
@@ -382,7 +422,9 @@ def question_4():
 
 @app.route('/answer_4', methods=['POST'])
 def answer_4():
-    return nugu.answer(4)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(4, userId)
 
 @app.route('/question_5', methods=['POST'])
 def question_5():
@@ -390,7 +432,9 @@ def question_5():
 
 @app.route('/answer_5', methods=['POST'])
 def answer_5():
-    return nugu.answer(5)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(5, userId)
 
 @app.route('/question_6', methods=['POST'])
 def question_6():
@@ -398,7 +442,9 @@ def question_6():
 
 @app.route('/answer_6', methods=['POST'])
 def answer_6():
-    return nugu.answer(6)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(6, userId)
 
 @app.route('/question_7', methods=['POST'])
 def question_7():
@@ -406,7 +452,9 @@ def question_7():
 
 @app.route('/answer_7', methods=['POST'])
 def answer_7():
-    return nugu.answer(7)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(7, userId)
 
 @app.route('/question_8', methods=['POST'])
 def question_8():
@@ -414,7 +462,9 @@ def question_8():
 
 @app.route('/answer_8', methods=['POST'])
 def answer_8():
-    return nugu.answer(8)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(8, userId)
 
 @app.route('/question_9', methods=['POST'])
 def question_9():
@@ -422,7 +472,9 @@ def question_9():
 
 @app.route('/answer_9', methods=['POST'])
 def answer_9():
-    return nugu.answer(9)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(9, userId)
 
 @app.route('/question_10', methods=['POST'])
 def question_10():
@@ -430,7 +482,9 @@ def question_10():
 
 @app.route('/answer_10', methods=['POST'])
 def answer_10():
-    return nugu.answer(10)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(10, userId)
 
 @app.route('/question_11', methods=['POST'])
 def question_11():
@@ -438,7 +492,9 @@ def question_11():
 
 @app.route('/answer_11', methods=['POST'])
 def answer_11():
-    return nugu.answer(11)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(11, userId)
 
 @app.route('/question_12', methods=['POST'])
 def question_12():
@@ -446,7 +502,9 @@ def question_12():
 
 @app.route('/answer_12', methods=['POST'])
 def answer_12():
-    return nugu.answer(12)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(12, userId)
 
 @app.route('/question_13', methods=['POST'])
 def question_13():
@@ -454,7 +512,9 @@ def question_13():
 
 @app.route('/answer_13', methods=['POST'])
 def answer_13():
-    return nugu.answer(13)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(13, userId)
 
 @app.route('/question_14', methods=['POST'])
 def question_14():
@@ -462,7 +522,9 @@ def question_14():
 
 @app.route('/answer_14', methods=['POST'])
 def answer_14():
-    return nugu.answer(14)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(14, userId)
 
 @app.route('/question_15', methods=['POST'])
 def question_15():
@@ -470,7 +532,9 @@ def question_15():
 
 @app.route('/answer_15', methods=['POST'])
 def answer_15():
-    return nugu.answer(15)
+    token = auth.OAUTH_token()
+    userId = auth.OAUTH_USERID(token)
+    return nugu.answer(15, userId)
 
 @app.route('/postWordSet', methods=['POST'])
 def postWordSet():
@@ -483,132 +547,132 @@ def postWordSet():
 
 
 
-@app.route('/forgetting', methods=['POST'])
-def f_ExamStart():
-    wordSet = nugu.wordset
-    subWordSet = nugu.subwordset
-    
-    if wordSet == "TOEIC":
-        wordSetId = 1
-    elif wordSet == "TOEFL":
-        wordSetId = 2
-    else:
-        wordSetId = 3
+# @app.route('/forgetting', methods=['POST'])
+# def f_ExamStart():
+#     wordSet = nugu.wordset
+#     subWordSet = nugu.subwordset
+#
+#     if wordSet == "TOEIC":
+#         wordSetId = 1
+#     elif wordSet == "TOEFL":
+#         wordSetId = 2
+#     else:
+#         wordSetId = 3
+#
+#     if subWordSet == "Chapter 1":
+#         subWordSetId = 1
+#     elif subWordSet == "Chapter 2":
+#         subWordSetId = 2
+#     else:
+#         subWordSetId = 3
+#
+#     db.deleteFExam()
+#
+#     # Fexam table에 공부할 단어 등록
+#     #studied_words = db.getStudiedWords()
+#     studied_words = db.getForgettinRateWords()
+#
+#     for word in studied_words:#
+#         forgettingrate.update_forgettingRate(word[1]) # meaning 넘겨줌
+#
+#     words = db.getLowForgettingRate()
+#
+#     # print("=============================")
+#     # print(words)
+#     # print("=============================")
+#
+#     for word in words:
+#         db.setFExamWords(word[0], word[1])
+#
+#     response = commonResponse #### 여깁니다!!!!
+#     response['output']['testWordSet'] = wordSet
+#     response['output']['testSubWordSet'] = subWordSet
+#
+#     return json.dumps(response)
+#
+#     #return 200
 
-    if subWordSet == "Chapter 1":
-        subWordSetId = 1
-    elif subWordSet == "Chapter 2":
-        subWordSetId = 2
-    else:
-        subWordSetId = 3
-
-    db.deleteFExam()
-
-    # Fexam table에 공부할 단어 등록
-    #studied_words = db.getStudiedWords()
-    studied_words = db.getForgettinRateWords()
-
-    for word in studied_words:#
-        forgettingrate.update_forgettingRate(word[1]) # meaning 넘겨줌
-
-    words = db.getLowForgettingRate()    
-    
-    # print("=============================")
-    # print(words)
-    # print("=============================")
-    
-    for word in words:
-        db.setFExamWords(word[0], word[1])
-
-    response = commonResponse #### 여깁니다!!!!
-    response['output']['testWordSet'] = wordSet
-    response['output']['testSubWordSet'] = subWordSet
-
-    return json.dumps(response)
-
-    #return 200
 
 
-
-@app.route('/forgetting_question_1', methods=['POST'])
-def forgetting_question_1():
-    return nugu.forgetting_question(1)
-
-@app.route('/forgetting_answer_1', methods=['POST'])
-def forgetting_answer_1():
-    return nugu.forgetting_answer(1)
-
-@app.route('/forgetting_question_2', methods=['POST'])
-def forgetting_question_2():
-    return nugu.forgetting_question(2)
-
-@app.route('/forgetting_answer_2', methods=['POST'])
-def forgetting_answer_2():
-    return nugu.forgetting_answer(2)
-
-@app.route('/forgetting_question_3', methods=['POST'])
-def forgetting_question_3():
-    return nugu.forgetting_question(3)
-
-@app.route('/forgetting_answer_3', methods=['POST'])
-def forgetting_answer_3():
-    return nugu.forgetting_answer(3)
-
-@app.route('/forgetting_question_4', methods=['POST'])
-def forgetting_question_4():
-    return nugu.forgetting_question(4)
-
-@app.route('/forgetting_answer_4', methods=['POST'])
-def forgetting_answer_4():
-    return nugu.forgetting_answer(4)
-
-@app.route('/forgetting_question_5', methods=['POST'])
-def forgetting_question_5():
-    return nugu.forgetting_question(5)
-
-@app.route('/forgetting_answer_5', methods=['POST'])
-def forgetting_answer_5():
-    return nugu.forgetting_answer(5)
-
-@app.route('/forgetting_question_6', methods=['POST'])
-def forgetting_question_6():
-    return nugu.forgetting_question(6)
-
-@app.route('/forgetting_answer_6', methods=['POST'])
-def forgetting_answer_6():
-    return nugu.forgetting_answer(6)
-
-@app.route('/forgetting_question_7', methods=['POST'])
-def forgetting_question_7():
-    return nugu.forgetting_question(7)
-
-@app.route('/forgetting_answer_7', methods=['POST'])
-def forgetting_answer_7():
-    return nugu.forgetting_answer(7)
-
-@app.route('/forgetting_question_8', methods=['POST'])
-def forgetting_question_8():
-    return nugu.forgetting_question(8)
-
-@app.route('/forgetting_answer_8', methods=['POST'])
-def forgetting_answer_8():
-    return nugu.forgetting_answer(8)
-
-@app.route('/forgetting_question_9', methods=['POST'])
-def forgetting_question_9():
-    return nugu.forgetting_question(9)
-
-@app.route('/forgetting_answer_9', methods=['POST'])
-def forgetting_answer_9():
-    return nugu.forgetting_answer(9)
-
-@app.route('/forgetting_question_10', methods=['POST'])
-def forgetting_question_10():
-    return nugu.forgetting_question(10)
-
-@app.route('/forgetting_answer_10', methods=['POST'])
-def forgetting_answer_10():
-    return nugu.forgetting_answer(10)
+# @app.route('/forgetting_question_1', methods=['POST'])
+# def forgetting_question_1():
+#     return nugu.forgetting_question(1)
+#
+# @app.route('/forgetting_answer_1', methods=['POST'])
+# def forgetting_answer_1():
+#     return nugu.forgetting_answer(1)
+#
+# @app.route('/forgetting_question_2', methods=['POST'])
+# def forgetting_question_2():
+#     return nugu.forgetting_question(2)
+#
+# @app.route('/forgetting_answer_2', methods=['POST'])
+# def forgetting_answer_2():
+#     return nugu.forgetting_answer(2)
+#
+# @app.route('/forgetting_question_3', methods=['POST'])
+# def forgetting_question_3():
+#     return nugu.forgetting_question(3)
+#
+# @app.route('/forgetting_answer_3', methods=['POST'])
+# def forgetting_answer_3():
+#     return nugu.forgetting_answer(3)
+#
+# @app.route('/forgetting_question_4', methods=['POST'])
+# def forgetting_question_4():
+#     return nugu.forgetting_question(4)
+#
+# @app.route('/forgetting_answer_4', methods=['POST'])
+# def forgetting_answer_4():
+#     return nugu.forgetting_answer(4)
+#
+# @app.route('/forgetting_question_5', methods=['POST'])
+# def forgetting_question_5():
+#     return nugu.forgetting_question(5)
+#
+# @app.route('/forgetting_answer_5', methods=['POST'])
+# def forgetting_answer_5():
+#     return nugu.forgetting_answer(5)
+#
+# @app.route('/forgetting_question_6', methods=['POST'])
+# def forgetting_question_6():
+#     return nugu.forgetting_question(6)
+#
+# @app.route('/forgetting_answer_6', methods=['POST'])
+# def forgetting_answer_6():
+#     return nugu.forgetting_answer(6)
+#
+# @app.route('/forgetting_question_7', methods=['POST'])
+# def forgetting_question_7():
+#     return nugu.forgetting_question(7)
+#
+# @app.route('/forgetting_answer_7', methods=['POST'])
+# def forgetting_answer_7():
+#     return nugu.forgetting_answer(7)
+#
+# @app.route('/forgetting_question_8', methods=['POST'])
+# def forgetting_question_8():
+#     return nugu.forgetting_question(8)
+#
+# @app.route('/forgetting_answer_8', methods=['POST'])
+# def forgetting_answer_8():
+#     return nugu.forgetting_answer(8)
+#
+# @app.route('/forgetting_question_9', methods=['POST'])
+# def forgetting_question_9():
+#     return nugu.forgetting_question(9)
+#
+# @app.route('/forgetting_answer_9', methods=['POST'])
+# def forgetting_answer_9():
+#     return nugu.forgetting_answer(9)
+#
+# @app.route('/forgetting_question_10', methods=['POST'])
+# def forgetting_question_10():
+#     return nugu.forgetting_question(10)
+#
+# @app.route('/forgetting_answer_10', methods=['POST'])
+# def forgetting_answer_10():
+#     return nugu.forgetting_answer(10)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5500, debug=True)
