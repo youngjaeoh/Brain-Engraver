@@ -123,9 +123,16 @@ def getExam():
     sql = 'SELECT * from Exam'
     return getDB(sql, ())
 
-def getFExam():
-    sql = 'SELECT * from FExam'
+def getSynonym(question):
+    sql = 'SELECT * from synonyms WHERE word = "' + question + '"'
+    print("$$!%!%!@%!@%!@%@!")
+    print(sql)
+    print("$$!%!%!@%!@%!@%@!")
     return getDB(sql, ())
+
+# def getFExam():
+#     sql = 'SELECT * from FExam'
+#     return getDB(sql, ())
 
 def getStudiedWords():
     sql = 'SELECT * FROM Word WHERE studied = 1'

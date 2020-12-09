@@ -36,33 +36,6 @@ def studyStart():
     wordSetId = nugu.wordsetid
     subWordSetId = nugu.subwordsetid
 
-    # # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
-    #
-    # # token parsing
-    # data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
-    # token = data['context']['session']['accessToken']
-    #
-    #
-    # print("this is the token!!!!!!!!!: ", token)
-    #
-    # # 회원인지 확인 -> POST https://api.github.com/user
-    # url = "https://api.github.com/user"
-    #
-    # oauthresponse = auth.requestUser(url, token)
-    #
-    # userId = oauthresponse['login']
-    #
-    # strrrrUserId = db.getUser(userId)
-    # if strrrrUserId == 0:
-    #     print("no id!!! making a new one")
-    #     db.setToken(userId, token)
-    #     db.createTable(userId)
-    # else:
-    #     pass
-    #
-    #
-    # # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
-
     token = auth.OAUTH_token()
     userId = auth.OAUTH_USERID(token)
 
@@ -80,7 +53,7 @@ def studyStart():
 
     # 공부할 단어들 forgettingRate table에 넣기
     for word in study_words: # study 하면 forgettingRate db에 추가
-        db.insert_ForgettingRate(word[1], word[2], word[3], wordSetId, subWordSetId, userId) # study 안 하고 시험 볼 수는 없는 구조
+        db.insert_ForgettingRate(word[1], word[2], word[3], wordSetId, subWordSetId, userId)
 
     # forgettingStage 0인 단어들 1로 업데이트
     forgettingrate.init_forgettingStage(wordSetId, subWordSetId, userId)
@@ -92,6 +65,8 @@ def studyStart():
     return json.dumps(response)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
 @app.route('/chooseChapter', methods=['POST'])
 def chooseChapter():
     response = commonResponse
@@ -147,7 +122,7 @@ def chooseWordSet():
     elif SmyChosenWordset == "쥐왈이":
         myChosenWordset = "GRE"
     else:
-        myChosenWordset = "GRE"
+        myChosenWordset = "GRE" #사용자 발화 처리
 
     if myChosenWordset == "토익":
         response['output']['chooseWordSet'] = 'TOEIC'
@@ -232,7 +207,7 @@ def chooseSubWordSet():
     elif SmyChosenWordset == "삼단원":
         myChosenWordset = "챕터 삼"
     else:
-        myChosenWordset = "챕터 삼"
+        myChosenWordset = "챕터 삼"# 사용자 발화 처리
 
     if myChosenWordset == "챕터 일":
         response['output']['chooseSubWordSet'] = 'Chapter 1'
@@ -262,33 +237,6 @@ def examStart():
     wordSetId = nugu.wordsetid
     subWordSetId = nugu.subwordsetid
 
-
-    # # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
-    #
-    # # token parsing
-    # data = json.loads(request.get_data().decode('utf8').replace("'", '"'))
-    # token = data['context']['session']['accessToken']
-    #
-    #
-    # print("this is the token!!!!!!!!!: ", token)
-    #
-    # # 회원인지 확인 -> POST https://api.github.com/user
-    # url = "https://api.github.com/user"
-    #
-    # oauthresponse = auth.requestUser(url, token)
-    #
-    # userId = oauthresponse['login']
-    #
-    # strrrrUserId = db.getUser(userId)
-    # if strrrrUserId == 0:
-    #     print("no id!!! making a new one")
-    #     db.setToken(userId, token)
-    #     db.createTable(userId)
-    # else:
-    #     pass
-    #
-    #
-    # # OAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTHOAUTH
     token = auth.OAUTH_token()
     userId = auth.OAUTH_USERID(token)
 
@@ -296,15 +244,7 @@ def examStart():
     studied_words = db.getForgettingRateWords(userId)
     for word in studied_words:#
         forgettingrate.update_forgettingRate(word[1], userId) # meaning 넘겨줌
-    """
-    # ForgettingRate db에 있는 단어 전부 다 forgettingrate 업데이트
-    forgetting_words = db.getForgettingRateWords_All()
 
-    for word in forgetting_words:
-        forgettingrate.update_forgettingRate(word[1])
-    
-    ## getExamWords 바로 전에 forgettingrate 업데이트
-    """
     # exam table에 공부할 단어 등록
     words = db.getExamWords(wordSetId, subWordSetId, userId)
 
