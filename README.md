@@ -193,6 +193,9 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - In the NUGU Play "뇌새김" within the NUGU application, there is a sample voice interaction sentences for the user to try.
 - When the user speaks "아리야, 뇌새김 시작해줘", the NUGU AI speaker says it is launched, and waits for the user to choose a certain function.
 
+- The user can always check the word and its' meaning from the mobile application.
+- To check the wordset, click the menu above, click  Word Set, click word set such as TOEIC and click sub word set such as Chapter1.
+
 ### NUGU AI Speaker
 
 #### Overall Process
@@ -240,6 +243,11 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - In order to finish the application during the process of "learning stage" or "test stage", user should say "아리아, 뇌새김 그만" or "아리아, 뇌새김 닫아줘"
 - When user says "아리아 , 그만", the application terminates without saving its progress.
 - When NUGU speaker is in the session waiting for the user to speak, user can just say "그만" to terminate the process.
+
+## User Guide
+### Installation
+- The mobile application can be found in 'Google Play Store'. our application will be recommended when the user searches for certain keywords, such as 'English', 'learning', 'vocabulary', 'memorize'. Simple click button will install it to the user's mobile phone. 
+- For the speaker, Brain Engraver is already installed in NUGU application(both Android and iOS). It can be found in the "Education / Kids" catetory under "NUGU PLAY".
 
 ## Evaluation & Analysis
 It is meaningful in that it memorizes words by communicating with speaker, not by memorizing text-based words. Its strength is that it extracts words that users may have forgotten over time based on the forgettingrate. Each user has a different forgettingrate table to extract words according to the user's forgetting pattern, and it uses forgettingstage to distinguish between long-term memory and short-term memory.
