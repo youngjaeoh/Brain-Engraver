@@ -171,7 +171,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'',''),(30,'youngjaeoh','b631cc3ca2fb69a6dcbf8f316e210403822a903d');
+INSERT INTO `User` VALUES (1,'',''),(30,'youngjaeoh','');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
