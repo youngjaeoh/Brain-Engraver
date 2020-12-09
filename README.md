@@ -60,14 +60,7 @@ Brain Engraver consists of four modules. The first module is NUGU AI Speaker and
 ### Forgetting-Curve Algorithm
 
 ![스크린샷 2020-12-03 오후 9 58 52](https://user-images.githubusercontent.com/69071182/101021220-fc672100-35b2-11eb-99c6-75ab7ace1898.png)
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/101645165-64b57700-3a79-11eb-9b50-da262c7faa59.png", width="950">
-</p>
-<p align="center">
-  <em>Database</em>
-</p>
-<br>
+![스크린샷 2020-12-10 오전 12 18 08](https://user-images.githubusercontent.com/69071182/101649114-dee7fa80-3a7d-11eb-8746-b08d95b32e13.png)
 
 Each user has a forgettingrate table, and the words that passed the learning stage are inserted in the forgettingrate table. The words that are first inserted in the forgettingrate table will have default test time, and the forgettingrate and forgettingstage will be initialized to 0 and 1. During the test stage, if the user answers the question incorrectly, the forgettingstage will not change, and if the answer is correct, the forgettingstage will go up. The graph calculating the forgettingrate for each forgettingstage is different, and the higher the forgettingstage, the slower the forgettingrate decreases. If the same word is answered correctly by user four times in the test stage, it will go to stage 5, long-term memory, and will not be tested again. The forgettingrate is calculated by the difference between the current time and the most recent test time the word is tested. A large gap between the current time and testtime is calculated as a low forgettingrate and it is likely to be extracted during the test stage. Conversely, if the gap between the current time and testtime is not large, the forgettingrate is calculated high, and it is not likely to be extracted during the test stage.
 
@@ -191,14 +184,8 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 
 ### Mobile application
 ![스크린샷 2020-12-03 오후 9 59 18](https://user-images.githubusercontent.com/69071182/101021226-fd984e00-35b2-11eb-8281-64ac8057b00b.png)
+![스크린샷 2020-12-10 오전 12 19 46](https://user-images.githubusercontent.com/69071182/101649180-f3c48e00-3a7d-11eb-9917-ecb29fea3abd.png)
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/101645193-6aab5800-3a79-11eb-88db-5ac98e847cbb.png", width="900">
-</p>
-<p align="center">
-  <em>Mobile Application</em>
-</p>
-<br>
 
 - The user should first use the mobile application to sign up or sign in to get the token.
 - The token is sent to the server, creating the token's own ForgettingRate table.
@@ -209,13 +196,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 ### NUGU AI Speaker
 
 #### Overall Process
-<p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/101645220-739c2980-3a79-11eb-9db6-392980515145.png", width="350">
-</p>
-<p align="center">
-  <em>Use case - Overall Process</em>
-</p>
-<br>
+![스크린샷 2020-12-10 오전 12 20 03](https://user-images.githubusercontent.com/69071182/101649277-12c32000-3a7e-11eb-9bf9-2c859c35958d.png)
 
 - When the user starts Brain-Engraver, the user can choose action among three options, "뇌새김 정하자", "뇌새김 공부하자", "뇌새김 시험보자".
 - After the user chooses word set and chapter by "뇌새김 정하자", the user can move on to the learning stage and test stage.
@@ -223,15 +204,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 
 
 #### Choosing Wordset
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/101647563-36856680-3a7c-11eb-85f0-fbecc2a52414.png", width="900">
-</p>
-<p align="center">
-  <em>Use case - Choosing wordset, chapter</em>
-</p>
-<br>
-
+![스크린샷 2020-12-10 오전 12 20 14](https://user-images.githubusercontent.com/69071182/101649357-24a4c300-3a7e-11eb-961c-d5a174693a13.png)
 
 - When the user speaks "정하자", the NUGU AI Speaker starts the application and asks the user which chapter to choose. The user can choose the wordset "TOEIC" by speaking "토익", "토플" for "TOEFL", and "지얼이" for "GRE".
 - If the user does not choose the correct chapter, the application terminates
@@ -242,14 +215,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - When the word set and sub word set has been choosen by the user, the NUGU AI Speaker speaks "TOEIC(TOEFL or GRE) 의 Chapter 1(2 or 3)을 학습하기로 설정 완료했습니다!"
 
 #### Learning Stage
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/101645251-7e56be80-3a79-11eb-86b8-f8301cc85799.png", width="900">
-</p>
-<p align="center">
-  <em>Use case - Learning stage</em>
-</p>
-<br>
+![스크린샷 2020-12-10 오전 12 20 22](https://user-images.githubusercontent.com/69071182/101649369-27071d00-3a7e-11eb-9517-11c06c977b8f.png)
 
 - After choosing the wordset and the chapter(Subwordset), the user starts the "study" function by simply speaking "공부하자".
 - In the "study" function, which is the learning stage mentioned above in the specifications, NUGU AI speaker reads the word 3 times.
@@ -259,13 +225,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The forgettingstage for each word in the selected chapter is initialized to 1.
 
 #### Test Stage
-<p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/101645257-7eef5500-3a79-11eb-9c56-2ffabee093a1.png", width="950">
-</p>
-<p align="center">
-  <em>Use case - Test stage</em>
-</p>
-<br>
+![스크린샷 2020-12-10 오전 12 20 31](https://user-images.githubusercontent.com/69071182/101649378-2a020d80-3a7e-11eb-9f1e-e01b176b3e9f.png)
 
 - After finishing the learning stage, the user can start the test stage, "exam" function by "시험보자"
 - Before starting "exam" function, forgettingrate is updated according to the time when the "exam" function is called.
@@ -275,13 +235,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The testtime for each word is updated with the time when the speaker received the user's answer.
 
 #### Interrupt/terminate function
-<p align="center">
-<img src="https://user-images.githubusercontent.com/69071182/101645253-7e56be80-3a79-11eb-97ea-349a22ac7f35.png", width="500">
-</p>
-<p align="center">
-  <em>Use case - Interrupt</em>
-</p>
-<br>
+![스크린샷 2020-12-10 오전 12 20 40](https://user-images.githubusercontent.com/69071182/101649400-2ec6c180-3a7e-11eb-8a22-fd8194768dfc.png)
 
 - In order to finish the application during the process of "learning stage" or "test stage", user should say "아리아, 뇌새김 그만" or "아리아, 뇌새김 닫아줘"
 - When user says "아리아 , 그만", the application terminates without saving its progress.
