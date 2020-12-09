@@ -196,7 +196,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 <img src="https://user-images.githubusercontent.com/69071182/101645193-6aab5800-3a79-11eb-88db-5ac98e847cbb.png", width="900">
 </p>
 <p align="center">
-  <em>NUGU play 뇌새김</em>
+  <em>Mobile Application</em>
 </p>
 <br>
 
