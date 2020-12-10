@@ -5,11 +5,11 @@ import nugu
 
 def initDB():
     db = pymysql.connect(
-        host='localhost',
+        host='us-cdbr-east-02.cleardb.com',
         port=3306,
-        user='my_user',
-        passwd='1q2w3e4R!',
-        db='brainEngraver',
+        user='bfd67745136997',
+        passwd='dc2870b4',
+        db='heroku_3543b79134f61fd',
         charset='utf8'
     )
     return db
@@ -125,9 +125,6 @@ def getExam():
 
 def getSynonym(question):
     sql = 'SELECT * from synonyms WHERE word = "' + question + '"'
-    print("$$!%!%!@%!@%!@%@!")
-    print(sql)
-    print("$$!%!%!@%!@%!@%@!")
     return getDB(sql, ())
 
 # def getFExam():
