@@ -60,8 +60,7 @@ Brain Engraver consists of four modules. The first module is NUGU AI Speaker and
 ### Forgetting-Curve Algorithm
 
 ![스크린샷 2020-12-03 오후 9 58 52](https://user-images.githubusercontent.com/69071182/101021220-fc672100-35b2-11eb-99c6-75ab7ace1898.png)
-
-![스크린샷 2020-12-03 오후 9 58 59](https://user-images.githubusercontent.com/69071182/101021223-fc672100-35b2-11eb-9952-9596be7a2988.png)
+![스크린샷 2020-12-10 오전 12 18 08](https://user-images.githubusercontent.com/69071182/101649114-dee7fa80-3a7d-11eb-8746-b08d95b32e13.png)
 
 Each user has a forgettingrate table, and the words that passed the learning stage are inserted in the forgettingrate table. The words that are first inserted in the forgettingrate table will have default test time, and the forgettingrate and forgettingstage will be initialized to 0 and 1. During the test stage, if the user answers the question incorrectly, the forgettingstage will not change, and if the answer is correct, the forgettingstage will go up. The graph calculating the forgettingrate for each forgettingstage is different, and the higher the forgettingstage, the slower the forgettingrate decreases. If the same word is answered correctly by user four times in the test stage, it will go to stage 5, long-term memory, and will not be tested again. The forgettingrate is calculated by the difference between the current time and the most recent test time the word is tested. A large gap between the current time and testtime is calculated as a low forgettingrate and it is likely to be extracted during the test stage. Conversely, if the gap between the current time and testtime is not large, the forgettingrate is calculated high, and it is not likely to be extracted during the test stage.
 
@@ -185,8 +184,8 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 
 ### Mobile application
 ![스크린샷 2020-12-03 오후 9 59 18](https://user-images.githubusercontent.com/69071182/101021226-fd984e00-35b2-11eb-8281-64ac8057b00b.png)
+![스크린샷 2020-12-10 오전 12 19 46](https://user-images.githubusercontent.com/69071182/101649180-f3c48e00-3a7d-11eb-9917-ecb29fea3abd.png)
 
-![스크린샷 2020-12-03 오후 9 59 28](https://user-images.githubusercontent.com/69071182/101021228-fd984e00-35b2-11eb-80d7-279aca4ef54b.png)
 
 - The user should first use the mobile application to sign up or sign in to get the token.
 - The token is sent to the server, creating the token's own ForgettingRate table.
@@ -194,10 +193,21 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - In the NUGU Play "뇌새김" within the NUGU application, there is a sample voice interaction sentences for the user to try.
 - When the user speaks "아리야, 뇌새김 시작해줘", the NUGU AI speaker says it is launched, and waits for the user to choose a certain function.
 
+- The user can always check the word and its' meaning from the mobile application.
+- To check the wordset, click the menu above, click  Word Set, click word set such as TOEIC and click sub word set such as Chapter1.
+
 ### NUGU AI Speaker
 
+#### Overall Process
+![스크린샷 2020-12-10 오전 12 20 03](https://user-images.githubusercontent.com/69071182/101649277-12c32000-3a7e-11eb-9bf9-2c859c35958d.png)
+
+- When the user starts Brain-Engraver, the user can choose action among three options, "뇌새김 정하자", "뇌새김 공부하자", "뇌새김 시험보자".
+- After the user chooses word set and chapter by "뇌새김 정하자", the user can move on to the learning stage and test stage.
+- It is recommended that the user go to the test stage after the learning stage.
+
+
 #### Choosing Wordset
-![스크린샷 2020-12-03 오후 9 59 37](https://user-images.githubusercontent.com/69071182/101021229-fe30e480-35b2-11eb-866d-a75e8ea58ab7.png)
+![스크린샷 2020-12-10 오전 12 20 14](https://user-images.githubusercontent.com/69071182/101649357-24a4c300-3a7e-11eb-961c-d5a174693a13.png)
 
 - When the user speaks "정하자", the NUGU AI Speaker starts the application and asks the user which chapter to choose. The user can choose the wordset "TOEIC" by speaking "토익", "토플" for "TOEFL", and "지얼이" for "GRE".
 - If the user does not choose the correct chapter, the application terminates
@@ -208,7 +218,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - When the word set and sub word set has been choosen by the user, the NUGU AI Speaker speaks "TOEIC(TOEFL or GRE) 의 Chapter 1(2 or 3)을 학습하기로 설정 완료했습니다!"
 
 #### Learning Stage
-![스크린샷 2020-12-03 오후 9 59 44](https://user-images.githubusercontent.com/69071182/101021231-fec97b00-35b2-11eb-9391-a49068ed4cfd.png)
+![스크린샷 2020-12-10 오전 12 20 22](https://user-images.githubusercontent.com/69071182/101649369-27071d00-3a7e-11eb-9517-11c06c977b8f.png)
 
 - After choosing the wordset and the chapter(Subwordset), the user starts the "study" function by simply speaking "공부하자".
 - In the "study" function, which is the learning stage mentioned above in the specifications, NUGU AI speaker reads the word 3 times.
@@ -218,7 +228,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The forgettingstage for each word in the selected chapter is initialized to 1.
 
 #### Test Stage
-![스크린샷 2020-12-03 오후 9 59 52](https://user-images.githubusercontent.com/69071182/101021232-fec97b00-35b2-11eb-863b-3adeecd8cc1d.png)
+![스크린샷 2020-12-10 오전 12 20 31](https://user-images.githubusercontent.com/69071182/101649378-2a020d80-3a7e-11eb-9f1e-e01b176b3e9f.png)
 
 - After finishing the learning stage, the user can start the test stage, "exam" function by "시험보자"
 - Before starting "exam" function, forgettingrate is updated according to the time when the "exam" function is called.
@@ -228,11 +238,16 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The testtime for each word is updated with the time when the speaker received the user's answer.
 
 #### Interrupt/terminate function
-![스크린샷 2020-12-03 오후 9 59 58](https://user-images.githubusercontent.com/69071182/101021233-ff621180-35b2-11eb-9999-31e5b5ccaa94.png)
+![스크린샷 2020-12-10 오전 12 20 40](https://user-images.githubusercontent.com/69071182/101649400-2ec6c180-3a7e-11eb-8a22-fd8194768dfc.png)
 
 - In order to finish the application during the process of "learning stage" or "test stage", user should say "아리아, 뇌새김 그만" or "아리아, 뇌새김 닫아줘"
 - When user says "아리아 , 그만", the application terminates without saving its progress.
 - When NUGU speaker is in the session waiting for the user to speak, user can just say "그만" to terminate the process.
+
+## User Guide
+### Installation
+- The mobile application can be found in 'Google Play Store'. our application will be recommended when the user searches for certain keywords, such as 'English', 'learning', 'vocabulary', 'memorize'. Simple click button will install it to the user's mobile phone. 
+- For the speaker, Brain Engraver is already installed in NUGU application(both Android and iOS). It can be found in the "Education / Kids" catetory under "NUGU PLAY".
 
 ## Evaluation & Analysis
 It is meaningful in that it memorizes words by communicating with speaker, not by memorizing text-based words. Its strength is that it extracts words that users may have forgotten over time based on the forgettingrate. Each user has a different forgettingrate table to extract words according to the user's forgetting pattern, and it uses forgettingstage to distinguish between long-term memory and short-term memory.
@@ -255,14 +270,34 @@ According to the forgettingrate algorithm defined above, the forgetting rate has
 
 ### Error
 - The problem behind NUGU playbuilder is that it can only map the specific word to the intent. This means that even though the intent's name is different(same with entity's name and action's name), the invocation word or the word that NUGU spekaer learned cannot be the same. On top of this, Intent created by us was prohibited to use in multiple actions unless its a one -continuously-starting branch action. Originally, we wanted to make a "Exam Function" that only tested the user with the words that the user just learnt, and a "Forgetting Rate Exam Function" to test only the words that the user is likely to forgotten. So naturally, since NUGU playbuilder's restrictions forced us to merge the two "Exam Function" and "Forgetting Rate Function" together. To illustrate a light on the matter, we created two actions for "Exam Function" and "Forgetting Rate Exam Function". Since only one entity type can be mapped to one action, so we had to create two different named entity types named "Answer" and "Forgetting Rate Answer". These two entity types were mapped to each intents, and those intents consists of the meaning of the words. When we ran the program and tested, NUGU playbuilder did not know what request to send, so it did not work. By this reason, we had no choice to merge these two "Exam Function" and "Forgetting Rate Function" together.
+
 - There were also a problem even when we merged these two actions. The problem was that when user started the exam action for the first time, there would be only 10 questions that the user have learned and 5 blank words that was supposed to be "likely-to-be-forgotten words". Consequently, error occured in the first test. So, in order to solve this problem, we had no choice but to increment 5 more words to the TOEIC's chapter 1. By doing this, on the first exam, NUGU playbuilder gave the test with 15 words that had been learned by the user, and on the second exam, NUGU playbuilder gave 10 just-learned words and 5 likely-to-be-forgotten words.
+
 - NUGU Platform  server  error: From  time  to  time,  NUGU  server  misacts  and sends  strange  server  requests.  There  are  serveral types  of  nugu server  errors  that  we  found.  The first  one  is  that  even  if  we  change  the  backend server  to  another  one  and  save  the  changes,  the NUGU  platform  sometimes  send  the  request  to the previous backend server. Moreover, since our program  is  based  on  numerous  branch  actions, NUGU  platform  sometimes  gets  confused  and sends   previous   action’s   request   to   the   current action.   When   this   kind   of   error   happens,   we figured out that waiting is the answer. We believe that  it  has  something  to  do  with  ACKs  comming late.
 
+- The problem with the forgettingrate algorithm is that there is no exact formula, graph, for the rate of human oblivion.Although it followed the most famous theory in the forgetting curve, Ebbinghaus' forgetting curve theory, this theory also does not provide an exact formula for the forgetting curve. It is hard to say that it is the exact rate of oblivion because the exact formula was given only when the forgetting stage was 1, so the other formulas were made by itself to make it look similar to the forgetting curve graph of the Ebbinghaus' on the 2-4 stages. Due to these formulas that are not exactly accurate, the forgetting rate rarely goes down to zero. In addition, due to the nature of the log graph, the forgetting rate is calculated very high if the test is retaken within a short time. So words with a forgetting rate of over 100000 are all treated as 100000, which can lead to duplication among words. For the same reason, if a user takes several tests within a short period of time, the forgetting stage is not calculated effectively. Therefore, it is recommended that users take the test once a day. Finally, in the forgetting curve theory of the Ebbinghaus, the forgetting stage was divided according to the number of repetitions based on the spaced repetition, but it had separate learning and test steps, so it is not possible to simply divide the forgetting stage according to the number of times the word was repeated. This may lead to extract inappropriate words during the test stage if they have learned several times, and to treat them as long-term memories. Therefore, it cannot help but use the user's correctness in the test stage instead of spaced repetition in the Ebbinghaus' forgetting curve.
 
+  + When the user's first test is not TOEIC's chapter 1
+    + Error will not occur in the "learning stage"
+    + Error will occur in the 11th question of the "test stage"
+    + When the error occurs, the application will terminate itself
+    + In order to avoid this error, study chapter 1 and take the chapter 1's exam. Afterwords, the error does not occur again.
+            
+  + When the user says things that Brain Engraver cannot understand
+    + When user speaks repeatedly the things Brain Engraver cannot understand, the application gets terminated.
+
+  + When the user does not speak
+    + When the user does not speak during the listening session of the NUGU AI speaker, the application gets terminated.
+    
+  + NUGU Platform server error
+    + From time to time, NUGU server misacts and sends strange server requests. There are serveral types of nugu server errors that we found. The first one is that even if we change the backend server to another one and save the changes, the NUGU platform sometimes send the request to the previous backend server. Moreover, since our program is based on numerous branch actions, NUGU platform sometimes gets confused and sends previous action's request to the current action. When this kind of error happens, we figured out that waiting is the answer. We believe that it has something to do with ACKs comming late.
+
+  + When the user repeats test stage several times within a short time. 
+    + Due to the nature of the log graph, the forgettingrate can be calculated very high if the test is retaken within a short time and words can be mistreated as if they were in long-term memory.
 
 ## Conclusion
 Our Demo of this project : https://youtu.be/wHTkzgaj9t8
-
+Our Presentation PPT : http://naver.me/5jWIcbmp
 
 ## You can also see...
 Our documentation of this project: https://www.overleaf.com/read/dpxgnnkhzkct
