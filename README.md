@@ -296,8 +296,8 @@ According to the forgettingrate algorithm defined above, the forgetting rate has
     + Due to the nature of the log graph, the forgettingrate can be calculated very high if the test is retaken within a short time and words can be mistreated as if they were in long-term memory.
 
 ## Conclusion
-Our Demo of this project : https://youtu.be/wHTkzgaj9t8
-Our Presentation PPT : http://naver.me/5jWIcbmp
+- Our Demo of this project : https://youtu.be/wHTkzgaj9t8
+- Our Presentation PPT : http://naver.me/5jWIcbmp
 
 ## You can also see...
-Our documentation of this project: https://www.overleaf.com/read/dpxgnnkhzkct
+- Our documentation of this project: https://www.overleaf.com/read/dpxgnnkhzkct
