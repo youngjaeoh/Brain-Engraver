@@ -3,6 +3,34 @@
 NUGU AI speaker helps you to memorize vocabularies Based on Forgetting Curve. \
 This project is for the AI / SE of HYU.
 
+## Conclusion (데모 비디오, PPT, documentation)
+- Our Demo of this project : https://youtu.be/q4spgq5WGos
+- Our Presentation PPT : http://naver.me/5jWIcbmp
+- Our documentation of this project: https://www.overleaf.com/read/dpxgnnkhzkct
+
+## 서비스 개요
++ 망각 곡선 기반 AI 영어 단어 암기 서비스
++ 기존 영어 단어 암기 방법들은 대부분 텍스트 기반 암기에 의존해왔다. 단어를 읽고 쓰는 방식으로 암기하면 많은 단어를 암기 하지도 못 하고, 한 번 외운 단어는 장기 기억이 아닌 단기 기억에만 존재해 금방 망각하게 된다. Brain-Engraver 는 '에빙하우스의 망각 곡선' 이론에 기반해 사용자의 망각률을 추적하고, 사용자가 망각했을만한 단어를 추출해 NUGU 스피커를 통해 시험을 본다. 스피커를 통한 단어 암기 방식은 발음과 뜻을 모두 암기할 수 있어 기존 텍스트 기반의 암기 방식보다 효율적이며, 망각 곡선에 기반해 단어를 여러 번 복습하기 때문에 단어가 장기 기억에 저장될 수 있게 도와준다. 
+![스크린샷 2020-12-03 오후 9 58 52](https://user-images.githubusercontent.com/69071182/101021220-fc672100-35b2-11eb-99c6-75ab7ace1898.png)
+
+## 서비스 소개
++ "뇌새김 정하자"
+    + Brain-Engraver 는 크게 두 단계로 구성된다. 1. 학습 단계, 2. 시험 단계. 사용자는 두 단계를 거치기 전에 '정하자' 단계를 통해 어떤 단어 세트를 학습할 것인지 선택할 수 있다. 제공되는 단어 세트는 TOEIC, TOEFL, GRE 총 세가지 세트이며, 각 단어 세트는 chapter 3까지 구성되어 있다.
++ "뇌새김 공부하자"
+    + 1.학습 단계. 학습 단계에서 사용자는 "뇌새김 정하자" 단계에서 선택한 단어 세트를 학습하게 된다. NUGU 스피커는 단어와 뜻을 세번씩 반복해서 불러주며 사용자에게 단어를 학습시킨다.
++ "뇌새김 시험보자"
+    + 2.시험 단계. 시험 단계에서 사용자는 "뇌새김 정하자" 단계에서 선택한 단어 세트를 시험보게 된다. 이 때 시험보는 단어는 사용자가 가장 최근에 "뇌새김 공부하자" 단계에서 공부한 단어 전부와, 이전에 공부했던 단어들 중에서 망각률에 기반해 가장 망각이 많이 일어난 단어 다섯개를 추가로 추출한다. NUGU 스피커를 통해 단어 시험을 보게 되는데, 스피커가 영어 단어를 읽으면 사용자는 한국어 뜻을 대답한다. 이 때 스피커는 사용자가 정답을 말하면 '정답입니다.', 오답을 말하면 '오답입니다.' 라고 말하게 된다. 사용자의 정답 여부와 시험 간격에 따라 망각률이 업데이트 된다.
+
+## 서비스 사용법
+- "뇌새김 정하자"
+![usecase_new1](https://user-images.githubusercontent.com/69071182/101985622-983c0f80-3ccc-11eb-9c5f-8e88f27751c6.png)
+
+- "뇌새김 공부하자"
+![usecase_new2](https://user-images.githubusercontent.com/69071182/101985624-9a9e6980-3ccc-11eb-9864-c92df745760a.png)
+
+- "뇌새김 시험보자"
+![스크린샷 2020-12-12 오후 10 40 04](https://user-images.githubusercontent.com/69071182/101985382-0aabf000-3ccb-11eb-8bbe-ca66c21c620f.png)
+
 ## Contributors
 + Young Jae OH
 + Dong Hee LEE
@@ -185,6 +213,8 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 ### Mobile application
 ![스크린샷 2020-12-03 오후 9 59 18](https://user-images.githubusercontent.com/69071182/101021226-fd984e00-35b2-11eb-8281-64ac8057b00b.png)
 ![스크린샷 2020-12-10 오전 12 19 46](https://user-images.githubusercontent.com/69071182/101649180-f3c48e00-3a7d-11eb-9917-ecb29fea3abd.png)
+![스크린샷 2020-12-12 오후 9 57 13](https://user-images.githubusercontent.com/69071182/101984486-109ed280-3cc5-11eb-81f7-335192beb71a.png)
+![스크린샷 2020-12-12 오후 9 57 36](https://user-images.githubusercontent.com/69071182/101984487-12689600-3cc5-11eb-99da-400fc5e07f61.png)
 
 
 - The user should first use the mobile application to sign up or sign in to get the token.
@@ -228,7 +258,7 @@ In the update_forgettingStage, it updates the forgettingstage according to the u
 - The forgettingstage for each word in the selected chapter is initialized to 1.
 
 #### Test Stage
-![스크린샷 2020-12-10 오전 12 20 31](https://user-images.githubusercontent.com/69071182/101649378-2a020d80-3a7e-11eb-9f1e-e01b176b3e9f.png)
+![스크린샷 2020-12-12 오후 10 40 04](https://user-images.githubusercontent.com/69071182/101985382-0aabf000-3ccb-11eb-8bbe-ca66c21c620f.png)
 
 - After finishing the learning stage, the user can start the test stage, "exam" function by "시험보자"
 - Before starting "exam" function, forgettingrate is updated according to the time when the "exam" function is called.
@@ -298,6 +328,4 @@ According to the forgettingrate algorithm defined above, the forgetting rate has
 ## Conclusion
 - Our Demo of this project : https://youtu.be/wHTkzgaj9t8
 - Our Presentation PPT : http://naver.me/5jWIcbmp
-
-## You can also see...
 - Our documentation of this project: https://www.overleaf.com/read/dpxgnnkhzkct
