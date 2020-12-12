@@ -1,6 +1,6 @@
 # Brain-Engraver: 
 
-NUGU AI speaker helps you to memorize vocabularies Based on Forgetting Curve. \
+NUGU AI speaker helps you to memorize vocabularies with forgetting curve. \
 HYU AI/SE project
 
 ## Conclusion (데모 비디오, PPT, documentation)
