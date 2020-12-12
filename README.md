@@ -32,8 +32,8 @@ This project is for the AI / SE of HYU.
 ![스크린샷 2020-12-12 오후 10 40 04](https://user-images.githubusercontent.com/69071182/101985382-0aabf000-3ccb-11eb-8bbe-ca66c21c620f.png)
 
 ## Contributors
-+ Young Jae OH
-+ Dong Hee LEE
++ Young Jae OH, 오영재
++ Dong Hee LEE, 이동희
 + Antoine  Maffeis
 + Sébastien  Yung
 
