@@ -6,7 +6,7 @@ NUGU AI speaker helps you to memorize vocabularies with forgetting curve.
 
 ## Conclusion (데모 비디오, PPT, documentation)
 - Our Demo of this project: https://youtu.be/q4spgq5WGos
-- Project Explanation Video (Overall Architecture): https://youtu.be/wHTkzgaj9t8
+- Project Explanation Video: https://youtu.be/kK1RsnrECb4
 - Our Presentation PPT: http://naver.me/5jWIcbmp
 - Our documentation of this project: https://www.overleaf.com/read/dpxgnnkhzkct
 
